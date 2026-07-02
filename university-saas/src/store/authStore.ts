@@ -17,7 +17,7 @@ export const useAuthStore = create<AuthState>()(
     (set) => ({
       user: null,
       firebaseUser: null,
-      loading: true,
+      loading: false,
       setUser: (user) => set({ user }),
       setFirebaseUser: (firebaseUser) => set({ firebaseUser }),
       setLoading: (loading) => set({ loading }),
