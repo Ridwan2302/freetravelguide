@@ -49,17 +49,15 @@ const UniversityDataLoader: React.FC<{ children: React.ReactNode }> = ({ childre
   return <>{children}</>;
 };
 
-function App() {
+const AppRoutes: React.FC = () => {
   const { loading } = useAuthStore();
 
   if (loading) return <Loader fullScreen message="Initialisation de l'application..." />;
 
   return (
-    <BrowserRouter>
-      <AppInitializer>
-        <UniversityDataLoader>
-          <NotificationContainer />
-          <Routes>
+    <>
+      <NotificationContainer />
+      <Routes>
             {/* Public routes */}
             <Route path="/" element={<LandingPage />} />
             <Route path="/connexion" element={<Login />} />
@@ -131,6 +129,16 @@ function App() {
             {/* 404 */}
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
+    </>
+  );
+};
+
+function App() {
+  return (
+    <BrowserRouter>
+      <AppInitializer>
+        <UniversityDataLoader>
+          <AppRoutes />
         </UniversityDataLoader>
       </AppInitializer>
     </BrowserRouter>
