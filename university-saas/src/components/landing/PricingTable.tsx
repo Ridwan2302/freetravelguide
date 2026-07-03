@@ -19,7 +19,7 @@ export const PricingTable: React.FC = () => (
         </p>
       </div>
 
-      <div className="grid md:grid-cols-3 gap-5 max-w-5xl mx-auto">
+      <div className="grid md:grid-cols-3 gap-5 max-w-5xl mx-auto pt-4">
         {(['standard', 'premium', 'enterprise'] as const).map((plan) => {
           const details = PLAN_DETAILS[plan];
           const isPremium = plan === 'premium';
@@ -27,7 +27,7 @@ export const PricingTable: React.FC = () => (
           return (
             <div
               key={plan}
-              className={`relative rounded-3xl overflow-hidden transition-all duration-300 ${
+              className={`relative rounded-3xl transition-all duration-300 ${
                 isPremium
                   ? 'bg-gradient-to-br from-blue-600 to-indigo-700 text-white shadow-2xl shadow-blue-600/25 scale-[1.03]'
                   : 'bg-white border border-slate-100 shadow-sm hover:-translate-y-1 hover:shadow-xl hover:shadow-slate-200/60'
@@ -35,14 +35,14 @@ export const PricingTable: React.FC = () => (
             >
               {isPremium && (
                 <div className="absolute -top-4 left-1/2 -translate-x-1/2 z-10">
-                  <span className="inline-flex items-center gap-1.5 bg-white text-blue-700 text-xs font-black px-4 py-1.5 rounded-full shadow-lg shadow-blue-900/20">
+                  <span className="inline-flex items-center gap-1.5 bg-white text-blue-700 text-xs font-black px-4 py-1.5 rounded-full shadow-lg shadow-blue-900/20 whitespace-nowrap">
                     ✦ Le plus populaire
                   </span>
                 </div>
               )}
 
               <div className="p-8">
-                {isPremium && <div className="h-4" />}
+                {isPremium && <div className="h-2" />}
 
                 <div className="mb-6">
                   <h3 className={`text-xl font-black ${isPremium ? 'text-white' : 'text-slate-900'}`}>
