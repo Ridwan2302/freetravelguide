@@ -1,10 +1,18 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import { GraduationCap, ArrowLeft, Mail, Phone, MapPin, Send, CheckCircle } from 'lucide-react';
 import { Footer } from '../components/common/Footer';
 
 const Contact: React.FC = () => {
-  const [form, setForm] = useState({ name: '', email: '', institution: '', subject: '', message: '' });
+  const [searchParams] = useSearchParams();
+  const isDemo = searchParams.get('sujet') === 'demo';
+  const [form, setForm] = useState({
+    name: '',
+    email: '',
+    institution: '',
+    subject: isDemo ? 'Demande de démonstration' : '',
+    message: isDemo ? "Bonjour, je souhaite planifier une démonstration personnalisée de University SaaS pour mon établissement." : '',
+  });
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [sent, setSent] = useState(false);
   const [sending, setSending] = useState(false);

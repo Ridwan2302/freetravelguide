@@ -78,12 +78,12 @@ const LandingPage: React.FC = () => (
                 >
                   Créer mon espace <ArrowRight className="w-4 h-4" />
                 </Link>
-                <a
-                  href="mailto:demo@universitysaas.fr"
+                <Link
+                  to="/contact?sujet=demo"
                   className="inline-flex items-center justify-center gap-2 border border-white/30 bg-white/10 hover:bg-white/20 text-white px-8 py-4 rounded-2xl font-semibold text-sm transition-all duration-200 active:scale-[0.97]"
                 >
                   Demander une démonstration
-                </a>
+                </Link>
               </div>
               <p className="mt-7 text-blue-300 text-xs font-medium">
                 14 jours d'essai gratuit · Sans carte bancaire · Résiliation à tout moment
