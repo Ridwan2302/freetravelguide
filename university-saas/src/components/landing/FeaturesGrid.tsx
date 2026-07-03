@@ -10,7 +10,7 @@ import {
 const profiles = [
   {
     title: 'Administrateurs',
-    subtitle: 'Pilotez l'ensemble de votre établissement',
+    subtitle: "Pilotez l'ensemble de votre établissement",
     icon: Building,
     accent: 'from-blue-500 to-blue-700',
     glow: 'shadow-blue-500/20',
@@ -23,7 +23,7 @@ const profiles = [
   },
   {
     title: 'Enseignants',
-    subtitle: 'Concentrez-vous sur l'essentiel : enseigner',
+    subtitle: "Concentrez-vous sur l'essentiel : enseigner",
     icon: GraduationCap,
     accent: 'from-emerald-500 to-teal-600',
     glow: 'shadow-emerald-500/20',
