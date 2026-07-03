@@ -81,13 +81,11 @@ const Blog: React.FC = () => {
 
   return (
     <div className="font-sans">
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-xl border-b border-slate-100 shadow-sm">
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-[#faf9f7]/85 backdrop-blur-xl border-b hairline">
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-          <Link to="/" className="flex items-center gap-2.5">
-            <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl flex items-center justify-center shadow shadow-blue-500/20">
-              <GraduationCap className="w-4 h-4 text-white" />
-            </div>
-            <span className="text-base font-black text-slate-900">University SaaS</span>
+          <Link to="/" className="flex items-baseline gap-1">
+            <span className="font-display text-xl text-slate-900">University</span>
+            <span className="font-display italic text-xl text-blue-700">SaaS</span>
           </Link>
           <Link to="/" className="flex items-center gap-1.5 text-sm font-semibold text-slate-500 hover:text-slate-900 transition-colors">
             <ArrowLeft className="w-4 h-4" /> Retour
@@ -97,16 +95,14 @@ const Blog: React.FC = () => {
 
       <div className="pt-16">
         {/* Hero */}
-        <section className="py-24 bg-gradient-to-br from-slate-900 to-blue-950 relative overflow-hidden">
-          <div className="absolute inset-0 opacity-10"
-            style={{ backgroundImage: 'radial-gradient(circle, #60a5fa 1px, transparent 1px)', backgroundSize: '32px 32px' }} />
+        <section className="py-24 ink relative overflow-hidden">
           <div className="relative max-w-7xl mx-auto px-6 text-center">
-            <span className="inline-block bg-blue-500/20 text-blue-300 text-xs font-bold px-4 py-2 rounded-full mb-6 border border-blue-500/30">
+            <p className="text-[11px] font-bold uppercase tracking-[0.3em] text-blue-400 mb-8">
               Blog & Actualités
-            </span>
-            <h1 className="text-5xl lg:text-6xl font-black text-white tracking-tight mb-5">
+            </p>
+            <h1 className="font-display text-5xl lg:text-7xl text-white tracking-tight mb-6 leading-[1.02]">
               Ressources pour<br />
-              <span className="text-blue-400">l'enseignement supérieur</span>
+              <span className="italic font-light text-blue-400">l'enseignement supérieur</span>
             </h1>
             <p className="text-lg text-slate-400 max-w-xl mx-auto">
               Conseils, retours d'expérience et guides pratiques pour moderniser votre établissement.
