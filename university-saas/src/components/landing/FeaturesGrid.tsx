@@ -3,129 +3,168 @@ import {
   BarChart3, Settings, FileText, Bell,
   ClipboardList, BookOpen, MessageSquare, Users,
   Calendar, Monitor, GraduationCap, CreditCard,
-  Eye, AlertCircle, TrendingUp, Building,
-  CheckCircle2,
+  Eye, AlertCircle, TrendingUp, Building, ArrowRight,
 } from 'lucide-react';
 
 const profiles = [
   {
     title: 'Administrateurs',
-    subtitle: "Pilotez l'ensemble de votre établissement",
+    subtitle: "Pilotez l'ensemble de votre établissement depuis un seul tableau de bord.",
     icon: Building,
-    accent: 'from-blue-500 to-blue-700',
-    glow: 'shadow-blue-500/20',
+    accent: 'blue',
+    gradient: 'from-blue-500 to-blue-700',
+    light: 'bg-blue-50 text-blue-600',
+    ring: 'ring-blue-100',
     features: [
-      { icon: BarChart3, text: 'Tableaux de bord analytiques en temps réel' },
-      { icon: Settings, text: 'Gestion centralisée multi-entités' },
-      { icon: FileText, text: 'Rapports avancés et exports automatisés' },
-      { icon: Bell, text: 'Automatisation des processus administratifs' },
+      { icon: BarChart3,   text: 'Tableaux de bord analytiques en temps réel' },
+      { icon: Settings,    text: 'Gestion centralisée multi-entités' },
+      { icon: FileText,    text: 'Rapports avancés et exports automatisés' },
+      { icon: Bell,        text: 'Automatisation des processus administratifs' },
     ],
   },
   {
     title: 'Enseignants',
-    subtitle: "Concentrez-vous sur l'essentiel : enseigner",
+    subtitle: "Concentrez-vous sur l'essentiel : enseigner et accompagner vos étudiants.",
     icon: GraduationCap,
-    accent: 'from-emerald-500 to-teal-600',
-    glow: 'shadow-emerald-500/20',
+    accent: 'emerald',
+    gradient: 'from-emerald-500 to-teal-600',
+    light: 'bg-emerald-50 text-emerald-600',
+    ring: 'ring-emerald-100',
     features: [
       { icon: ClipboardList, text: 'Saisie rapide des notes avec coefficients' },
-      { icon: BookOpen, text: 'Gestion et publication des devoirs' },
-      { icon: FileText, text: 'Ressources pédagogiques centralisées' },
+      { icon: BookOpen,      text: 'Gestion et publication des devoirs' },
+      { icon: FileText,      text: 'Ressources pédagogiques centralisées' },
       { icon: MessageSquare, text: 'Communication directe avec les étudiants' },
     ],
   },
   {
     title: 'Étudiants',
-    subtitle: 'Tout votre parcours en un seul endroit',
+    subtitle: 'Tout votre parcours académique accessible en un seul endroit, à tout moment.',
     icon: Users,
-    accent: 'from-violet-500 to-purple-700',
-    glow: 'shadow-violet-500/20',
+    accent: 'violet',
+    gradient: 'from-violet-500 to-purple-700',
+    light: 'bg-violet-50 text-violet-600',
+    ring: 'ring-violet-100',
     features: [
-      { icon: Calendar, text: 'Emploi du temps interactif et personnalisé' },
-      { icon: Monitor, text: 'Ressources pédagogiques en ligne' },
+      { icon: Calendar,      text: 'Emploi du temps interactif et personnalisé' },
+      { icon: Monitor,       text: 'Ressources pédagogiques en ligne' },
       { icon: GraduationCap, text: 'Suivi des notes et GPA en temps réel' },
-      { icon: CreditCard, text: 'Paiements de scolarité sécurisés en ligne' },
+      { icon: CreditCard,    text: 'Paiements de scolarité sécurisés en ligne' },
     ],
   },
   {
     title: 'Parents',
-    subtitle: 'Restez informés à chaque étape',
+    subtitle: 'Restez informés à chaque étape du parcours scolaire de votre enfant.',
     icon: Eye,
-    accent: 'from-orange-500 to-amber-600',
-    glow: 'shadow-orange-500/20',
+    accent: 'orange',
+    gradient: 'from-orange-500 to-amber-600',
+    light: 'bg-orange-50 text-orange-600',
+    ring: 'ring-orange-100',
     features: [
-      { icon: TrendingUp, text: 'Transparence totale des résultats scolaires' },
-      { icon: AlertCircle, text: 'Suivi des absences avec alertes instantanées' },
-      { icon: Bell, text: 'Notifications et échéances de paiements' },
-      { icon: MessageSquare, text: 'Messagerie directe avec l\'administration' },
+      { icon: TrendingUp,    text: 'Transparence totale des résultats scolaires' },
+      { icon: AlertCircle,   text: 'Suivi des absences avec alertes instantanées' },
+      { icon: Bell,          text: 'Notifications et échéances de paiements' },
+      { icon: MessageSquare, text: "Messagerie directe avec l'administration" },
     ],
   },
 ];
 
 export const FeaturesGrid: React.FC = () => (
-  <section id="fonctionnalites" className="py-32 bg-[#f7f9fc]">
+  <section id="fonctionnalites" className="py-32 bg-slate-50">
     <div className="max-w-7xl mx-auto px-6">
 
       {/* Header */}
-      <div className="text-center mb-20">
-        <span className="inline-block bg-blue-50 text-blue-600 text-xs font-bold px-4 py-2 rounded-full mb-5 uppercase tracking-widest border border-blue-100">
+      <div className="max-w-2xl mb-20">
+        <span className="inline-block bg-white text-blue-600 text-xs font-bold px-4 py-2 rounded-full mb-5 border border-slate-200 shadow-sm">
           Fonctionnalités
         </span>
-        <h2 className="text-4xl lg:text-5xl font-black text-gray-900 tracking-tight">
-          Une solution pour chaque acteur
+        <h2 className="text-4xl lg:text-5xl font-black text-slate-900 tracking-tight leading-[1.1]">
+          Un espace dédié pour chaque acteur de votre campus.
         </h2>
-        <p className="mt-5 text-xl text-gray-500 max-w-2xl mx-auto leading-relaxed">
-          Des espaces dédiés, conçus avec soin pour chaque profil utilisateur de votre établissement.
+        <p className="mt-5 text-lg text-slate-500 leading-relaxed">
+          Chaque profil dispose de son propre tableau de bord, conçu avec précision pour ses besoins quotidiens.
         </p>
       </div>
 
-      {/* Profile cards */}
-      <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-5">
-        {profiles.map((profile) => {
+      {/* Profile cards grid */}
+      <div className="grid md:grid-cols-2 gap-5 mb-5">
+        {profiles.map((profile, idx) => {
           const Icon = profile.icon;
+          const isLarge = idx === 0;
           return (
             <div
               key={profile.title}
-              className={`group relative bg-white rounded-3xl p-7 border border-gray-100 shadow-sm hover:shadow-xl ${profile.glow} transition-all duration-300 hover:-translate-y-1 overflow-hidden`}
+              className={`group bg-white rounded-3xl border border-slate-100 shadow-sm overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-slate-200/60 ${isLarge ? 'md:col-span-2 md:grid md:grid-cols-2' : ''}`}
             >
-              {/* Top gradient strip */}
-              <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${profile.accent} rounded-t-3xl`} />
+              {/* Colored top band */}
+              <div className={`h-1.5 bg-gradient-to-r ${profile.gradient} ${isLarge ? 'md:hidden' : ''}`} />
+              {isLarge && <div className={`hidden md:block w-1.5 bg-gradient-to-b ${profile.gradient}`} />}
 
-              {/* Icon */}
-              <div className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${profile.accent} flex items-center justify-center mb-5 shadow-lg`}>
-                <Icon className="w-6 h-6 text-white" />
+              <div className={`p-8 ${isLarge ? 'md:col-span-1' : ''}`}>
+                {/* Icon */}
+                <div className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${profile.gradient} flex items-center justify-center mb-5 shadow-md ring-4 ${profile.ring}`}>
+                  <Icon className="w-6 h-6 text-white" />
+                </div>
+
+                <h3 className="text-xl font-black text-slate-900 mb-2">{profile.title}</h3>
+                <p className="text-sm text-slate-400 mb-6 leading-relaxed">{profile.subtitle}</p>
+
+                <ul className="space-y-3.5">
+                  {profile.features.map(({ icon: FIcon, text }) => (
+                    <li key={text} className="flex items-center gap-3">
+                      <div className={`w-7 h-7 rounded-xl flex items-center justify-center flex-shrink-0 ${profile.light}`}>
+                        <FIcon className="w-3.5 h-3.5" />
+                      </div>
+                      <span className="text-sm text-slate-600 font-medium">{text}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                <div className={`mt-6 flex items-center gap-1.5 text-sm font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-200 ${profile.light.split(' ')[1]}`}>
+                  En savoir plus <ArrowRight className="w-3.5 h-3.5" />
+                </div>
               </div>
 
-              <h3 className="text-lg font-bold text-gray-900 mb-1">{profile.title}</h3>
-              <p className="text-sm text-gray-400 mb-5 leading-snug">{profile.subtitle}</p>
-
-              <ul className="space-y-3">
-                {profile.features.map(({ icon: FIcon, text }) => (
-                  <li key={text} className="flex items-start gap-2.5">
-                    <CheckCircle2 className="w-4 h-4 mt-0.5 text-gray-300 flex-shrink-0 group-hover:text-blue-500 transition-colors duration-200" />
-                    <span className="text-sm text-gray-500 leading-snug">{text}</span>
-                  </li>
-                ))}
-              </ul>
+              {isLarge && (
+                <div className="hidden md:flex items-center justify-center p-8 bg-gradient-to-br from-slate-50 to-blue-50/50">
+                  <div className="w-full max-w-xs space-y-3">
+                    {[
+                      { label: 'Étudiants actifs', value: '1 248', pct: 85 },
+                      { label: 'Taux de présence', value: '96%',   pct: 96 },
+                      { label: 'Cours planifiés',  value: '84',    pct: 70 },
+                    ].map(({ label, value, pct }) => (
+                      <div key={label} className="bg-white rounded-2xl p-4 border border-slate-100 shadow-sm">
+                        <div className="flex justify-between items-center mb-2">
+                          <span className="text-xs font-semibold text-slate-500">{label}</span>
+                          <span className="text-sm font-black text-slate-900">{value}</span>
+                        </div>
+                        <div className="h-1.5 bg-slate-100 rounded-full overflow-hidden">
+                          <div className="h-full bg-gradient-to-r from-blue-500 to-indigo-600 rounded-full" style={{ width: `${pct}%` }} />
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
           );
         })}
       </div>
 
-      {/* Bottom metrics strip */}
-      <div className="mt-16 grid md:grid-cols-3 gap-4">
+      {/* Bottom 3-metric strip */}
+      <div className="grid md:grid-cols-3 gap-5">
         {[
-          { value: '99.9%', label: 'Disponibilité garantie', desc: 'SLA entreprise inclus dans tous les plans' },
-          { value: 'RGPD', label: 'Conformité totale', desc: 'Données hébergées en Europe, sécurisées par design' },
-          { value: '< 24h', label: 'Déploiement rapide', desc: 'Votre campus en ligne dès le lendemain' },
+          { value: '99.9%',  label: 'Disponibilité garantie', desc: 'SLA entreprise inclus dans tous les plans' },
+          { value: 'RGPD',   label: 'Conformité totale',      desc: 'Données hébergées en Europe, sécurisées par conception' },
+          { value: '< 24h',  label: 'Déploiement rapide',     desc: 'Votre campus en ligne dès le lendemain' },
         ].map(({ value, label, desc }) => (
-          <div key={label} className="bg-white border border-gray-100 rounded-3xl p-7 shadow-sm flex gap-5 items-start">
-            <div className="flex-shrink-0 w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-600 to-indigo-700 flex items-center justify-center shadow">
-              <span className="text-white font-black text-sm text-center leading-tight px-1">{value}</span>
+          <div key={label} className="bg-white border border-slate-100 rounded-3xl p-6 shadow-sm flex gap-4 items-start">
+            <div className="flex-shrink-0 w-12 h-12 rounded-2xl bg-gradient-to-br from-blue-600 to-indigo-700 flex items-center justify-center shadow shadow-blue-500/20">
+              <span className="text-white font-black text-[11px] text-center px-0.5 leading-tight">{value}</span>
             </div>
             <div>
-              <p className="font-bold text-gray-900">{label}</p>
-              <p className="text-sm text-gray-400 mt-0.5 leading-snug">{desc}</p>
+              <p className="font-bold text-slate-900 text-sm">{label}</p>
+              <p className="text-xs text-slate-400 mt-1 leading-snug">{desc}</p>
             </div>
           </div>
         ))}

@@ -16,41 +16,41 @@ interface NavItem {
 
 const NAV_ITEMS: Record<UserRole, NavItem[]> = {
   super_admin_plateforme: [
-    { to: '/dashboard/super-admin', icon: <LayoutDashboard className="w-5 h-5" />, label: 'Vue d\'ensemble' },
-    { to: '/dashboard/super-admin/universites', icon: <Building className="w-5 h-5" />, label: 'Universités' },
-    { to: '/dashboard/super-admin/abonnements', icon: <CreditCard className="w-5 h-5" />, label: 'Abonnements' },
-    { to: '/dashboard/super-admin/audit', icon: <FileText className="w-5 h-5" />, label: 'Audit Logs' },
-    { to: '/dashboard/super-admin/parametres', icon: <Settings className="w-5 h-5" />, label: 'Paramètres' },
+    { to: '/dashboard/super-admin',              icon: <LayoutDashboard className="w-4 h-4" />, label: "Vue d'ensemble" },
+    { to: '/dashboard/super-admin/universites',  icon: <Building className="w-4 h-4" />,        label: 'Universités' },
+    { to: '/dashboard/super-admin/abonnements',  icon: <CreditCard className="w-4 h-4" />,      label: 'Abonnements' },
+    { to: '/dashboard/super-admin/audit',        icon: <FileText className="w-4 h-4" />,         label: 'Audit Logs' },
+    { to: '/dashboard/super-admin/parametres',   icon: <Settings className="w-4 h-4" />,         label: 'Paramètres' },
   ],
   admin_universite: [
-    { to: '/dashboard/admin', icon: <LayoutDashboard className="w-5 h-5" />, label: 'Vue d\'ensemble' },
-    { to: '/dashboard/admin/etudiants', icon: <Users className="w-5 h-5" />, label: 'Étudiants' },
-    { to: '/dashboard/admin/enseignants', icon: <UserCheck className="w-5 h-5" />, label: 'Enseignants' },
-    { to: '/dashboard/admin/cours', icon: <BookOpen className="w-5 h-5" />, label: 'Cours & Programmes' },
-    { to: '/dashboard/admin/paiements', icon: <CreditCard className="w-5 h-5" />, label: 'Paiements' },
-    { to: '/dashboard/admin/notes', icon: <GraduationCap className="w-5 h-5" />, label: 'Notes' },
-    { to: '/dashboard/admin/audit', icon: <ClipboardList className="w-5 h-5" />, label: 'Audit Logs' },
-    { to: '/dashboard/admin/parametres', icon: <Settings className="w-5 h-5" />, label: 'Paramètres' },
+    { to: '/dashboard/admin',              icon: <LayoutDashboard className="w-4 h-4" />, label: "Vue d'ensemble" },
+    { to: '/dashboard/admin/etudiants',    icon: <Users className="w-4 h-4" />,           label: 'Étudiants' },
+    { to: '/dashboard/admin/enseignants',  icon: <UserCheck className="w-4 h-4" />,       label: 'Enseignants' },
+    { to: '/dashboard/admin/cours',        icon: <BookOpen className="w-4 h-4" />,         label: 'Cours & Programmes' },
+    { to: '/dashboard/admin/paiements',    icon: <CreditCard className="w-4 h-4" />,      label: 'Paiements' },
+    { to: '/dashboard/admin/notes',        icon: <GraduationCap className="w-4 h-4" />,   label: 'Notes' },
+    { to: '/dashboard/admin/audit',        icon: <ClipboardList className="w-4 h-4" />,   label: 'Audit Logs' },
+    { to: '/dashboard/admin/parametres',   icon: <Settings className="w-4 h-4" />,         label: 'Paramètres' },
   ],
   teacher: [
-    { to: '/dashboard/enseignant', icon: <LayoutDashboard className="w-5 h-5" />, label: 'Vue d\'ensemble' },
-    { to: '/dashboard/enseignant/cours', icon: <BookOpen className="w-5 h-5" />, label: 'Mes Cours' },
-    { to: '/dashboard/enseignant/notes', icon: <GraduationCap className="w-5 h-5" />, label: 'Saisie des Notes' },
-    { to: '/dashboard/enseignant/devoirs', icon: <ClipboardList className="w-5 h-5" />, label: 'Devoirs' },
-    { to: '/dashboard/enseignant/ressources', icon: <FileText className="w-5 h-5" />, label: 'Ressources' },
+    { to: '/dashboard/enseignant',              icon: <LayoutDashboard className="w-4 h-4" />, label: "Vue d'ensemble" },
+    { to: '/dashboard/enseignant/cours',        icon: <BookOpen className="w-4 h-4" />,         label: 'Mes Cours' },
+    { to: '/dashboard/enseignant/notes',        icon: <GraduationCap className="w-4 h-4" />,   label: 'Saisie des Notes' },
+    { to: '/dashboard/enseignant/devoirs',      icon: <ClipboardList className="w-4 h-4" />,   label: 'Devoirs' },
+    { to: '/dashboard/enseignant/ressources',   icon: <FileText className="w-4 h-4" />,         label: 'Ressources' },
   ],
   student: [
-    { to: '/dashboard/etudiant', icon: <LayoutDashboard className="w-5 h-5" />, label: 'Vue d\'ensemble' },
-    { to: '/dashboard/etudiant/emploi-du-temps', icon: <Calendar className="w-5 h-5" />, label: 'Emploi du temps' },
-    { to: '/dashboard/etudiant/cours', icon: <BookOpen className="w-5 h-5" />, label: 'Mes Cours' },
-    { to: '/dashboard/etudiant/notes', icon: <GraduationCap className="w-5 h-5" />, label: 'Notes & Bulletin' },
-    { to: '/dashboard/etudiant/paiements', icon: <CreditCard className="w-5 h-5" />, label: 'Paiements' },
+    { to: '/dashboard/etudiant',                    icon: <LayoutDashboard className="w-4 h-4" />, label: "Vue d'ensemble" },
+    { to: '/dashboard/etudiant/emploi-du-temps',    icon: <Calendar className="w-4 h-4" />,        label: 'Emploi du temps' },
+    { to: '/dashboard/etudiant/cours',              icon: <BookOpen className="w-4 h-4" />,         label: 'Mes Cours' },
+    { to: '/dashboard/etudiant/notes',              icon: <GraduationCap className="w-4 h-4" />,   label: 'Notes & Bulletin' },
+    { to: '/dashboard/etudiant/paiements',          icon: <CreditCard className="w-4 h-4" />,      label: 'Paiements' },
   ],
   parent: [
-    { to: '/dashboard/parent', icon: <LayoutDashboard className="w-5 h-5" />, label: 'Vue d\'ensemble' },
-    { to: '/dashboard/parent/notes', icon: <BarChart3 className="w-5 h-5" />, label: 'Notes de l\'enfant' },
-    { to: '/dashboard/parent/absences', icon: <Bell className="w-5 h-5" />, label: 'Absences' },
-    { to: '/dashboard/parent/paiements', icon: <CreditCard className="w-5 h-5" />, label: 'Paiements' },
+    { to: '/dashboard/parent',           icon: <LayoutDashboard className="w-4 h-4" />, label: "Vue d'ensemble" },
+    { to: '/dashboard/parent/notes',     icon: <BarChart3 className="w-4 h-4" />,       label: "Notes de l'enfant" },
+    { to: '/dashboard/parent/absences',  icon: <Bell className="w-4 h-4" />,             label: 'Absences' },
+    { to: '/dashboard/parent/paiements', icon: <CreditCard className="w-4 h-4" />,      label: 'Paiements' },
   ],
 };
 
@@ -66,24 +66,22 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
   return (
     <>
       {isOpen && (
-        <div
-          className="fixed inset-0 bg-black/40 z-20 lg:hidden"
-          onClick={onClose}
-        />
+        <div className="fixed inset-0 bg-slate-900/20 z-20 lg:hidden" onClick={onClose} />
       )}
       <aside
         className={`
-          fixed top-16 left-0 h-[calc(100vh-4rem)] w-64 bg-white border-r border-gray-100
-          transform transition-transform duration-300 z-20
+          fixed top-16 left-0 h-[calc(100vh-4rem)] w-60 bg-white border-r border-slate-100
+          transform transition-transform duration-300 ease-out z-20
           ${isOpen ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0
         `}
       >
-        <div className="p-4 flex flex-col h-full">
-          <div className="lg:hidden flex justify-end mb-2">
-            <button onClick={onClose} className="p-1.5 rounded-lg hover:bg-gray-100 text-gray-400">
-              <X className="w-5 h-5" />
+        <div className="p-3 flex flex-col h-full">
+          <div className="lg:hidden flex justify-end mb-1">
+            <button onClick={onClose} className="w-8 h-8 rounded-xl bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-400 transition-colors">
+              <X className="w-4 h-4" />
             </button>
           </div>
+
           <nav className="flex-1 space-y-0.5">
             {navItems.map((item) => (
               <NavLink
@@ -92,20 +90,27 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
                 end={item.to.split('/').length <= 3}
                 onClick={onClose}
                 className={({ isActive }) =>
-                  `flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors ${
+                  `flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-150 ${
                     isActive
                       ? 'bg-blue-50 text-blue-700'
-                      : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
+                      : 'text-slate-500 hover:bg-slate-50 hover:text-slate-800'
                   }`
                 }
               >
-                {item.icon}
-                {item.label}
+                {({ isActive }) => (
+                  <>
+                    <span className={isActive ? 'text-blue-600' : 'text-slate-400'}>
+                      {item.icon}
+                    </span>
+                    {item.label}
+                  </>
+                )}
               </NavLink>
             ))}
           </nav>
-          <div className="pt-4 border-t border-gray-100">
-            <p className="text-xs text-gray-400 text-center">University SaaS v1.0</p>
+
+          <div className="pt-3 border-t border-slate-100">
+            <p className="text-xs text-slate-300 text-center font-medium">University SaaS · v1.0</p>
           </div>
         </div>
       </aside>

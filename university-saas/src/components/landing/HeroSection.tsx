@@ -1,162 +1,174 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Shield, Clock, Award } from 'lucide-react';
+import { ArrowRight, Shield, Clock, Award, TrendingUp, Users, BookOpen } from 'lucide-react';
+
+const FloatingCard: React.FC<{ className?: string; children: React.ReactNode }> = ({ className = '', children }) => (
+  <div className={`absolute bg-white rounded-2xl shadow-xl shadow-slate-200/60 border border-slate-100 p-4 ${className}`}>
+    {children}
+  </div>
+);
 
 export const HeroSection: React.FC = () => (
-  <section className="relative min-h-screen flex items-center overflow-hidden bg-[#0a1628]">
-    {/* Multi-layer background */}
-    <div className="absolute inset-0">
-      <div className="absolute inset-0 bg-gradient-to-br from-[#0a1628] via-[#0d2147] to-[#0a1628]" />
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-blue-500/30 to-transparent" />
-      {/* Grid overlay */}
-      <div className="absolute inset-0 opacity-[0.03]"
-        style={{ backgroundImage: 'linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)', backgroundSize: '60px 60px' }} />
-      {/* Glow orbs */}
-      <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-blue-600/20 rounded-full blur-[120px]" />
-      <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-indigo-600/15 rounded-full blur-[100px]" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-blue-500/10 rounded-full blur-[80px]" />
+  <section className="relative min-h-screen flex items-center overflow-hidden bg-white">
+    {/* Decorative background shapes */}
+    <div className="absolute inset-0 pointer-events-none overflow-hidden">
+      <div className="absolute top-0 right-0 w-[55%] h-full bg-gradient-to-bl from-blue-50 via-indigo-50/50 to-transparent" />
+      <div className="absolute top-1/4 right-1/4 w-72 h-72 bg-blue-100/40 rounded-full blur-3xl" />
+      <div className="absolute bottom-1/4 right-1/3 w-48 h-48 bg-indigo-100/50 rounded-full blur-2xl" />
+      {/* Grid dots */}
+      <div className="absolute right-0 top-0 w-[50%] h-full opacity-[0.35]"
+        style={{ backgroundImage: 'radial-gradient(circle, #93c5fd 1px, transparent 1px)', backgroundSize: '28px 28px' }} />
     </div>
 
-    <div className="relative max-w-7xl mx-auto px-6 py-32 w-full">
-      <div className="grid lg:grid-cols-2 gap-20 items-center">
+    <div className="relative max-w-7xl mx-auto px-6 py-28 w-full">
+      <div className="grid lg:grid-cols-2 gap-16 items-center">
 
         {/* Left — copy */}
-        <div className="space-y-8">
-          <div className="inline-flex items-center gap-2 border border-blue-500/30 bg-blue-500/10 backdrop-blur-sm px-4 py-2 rounded-full text-sm text-blue-300 font-medium">
-            <span className="w-2 h-2 bg-blue-400 rounded-full animate-pulse" />
-            Plateforme universitaire de nouvelle génération
+        <div className="space-y-8 max-w-xl">
+          <div className="fade-up">
+            <div className="inline-flex items-center gap-2 bg-blue-50 text-blue-700 text-xs font-bold px-4 py-2 rounded-full border border-blue-100">
+              <span className="w-1.5 h-1.5 bg-blue-500 rounded-full" />
+              Gestion universitaire centralisée
+            </div>
           </div>
 
-          <div>
-            <h1 className="text-5xl lg:text-[3.75rem] font-black leading-[1.08] tracking-tight text-white">
-              La gestion
-              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">
-                universitaire,
-              </span>
-              réinventée.
+          <div className="fade-up-1">
+            <h1 className="text-[3.5rem] lg:text-[4rem] font-black leading-[1.06] tracking-tight text-slate-900">
+              University
+              <span className="block text-blue-600">SaaS</span>
             </h1>
-            <p className="mt-6 text-lg text-slate-400 leading-relaxed max-w-lg">
-              Unifiez l'administration, les enseignants, les étudiants et les parents sur une seule plateforme fluide. Conçue pour les établissements qui visent l'excellence.
+            <p className="mt-5 text-xl text-slate-500 leading-relaxed">
+              Gérez votre établissement, vos étudiants, enseignants et finances depuis un seul espace conçu pour l'excellence académique.
             </p>
           </div>
 
-          <div className="flex flex-col sm:flex-row gap-3">
+          <div className="flex flex-col sm:flex-row gap-3 fade-up-2">
             <Link
               to="/onboarding"
-              className="inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-500 text-white px-7 py-4 rounded-2xl font-semibold text-base transition-all duration-200 shadow-lg shadow-blue-600/30 hover:shadow-blue-500/40 hover:-translate-y-0.5"
+              className="inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-7 py-4 rounded-2xl font-bold text-sm transition-all duration-200 shadow-lg shadow-blue-600/25 hover:shadow-xl hover:shadow-blue-600/30 active:scale-[0.97]"
             >
-              Démarrer gratuitement
+              Créer mon espace
               <ArrowRight className="w-4 h-4" />
             </Link>
             <Link
               to="/connexion"
-              className="inline-flex items-center justify-center gap-2 border border-white/10 bg-white/5 hover:bg-white/10 text-white px-7 py-4 rounded-2xl font-semibold text-base transition-all duration-200 backdrop-blur-sm"
+              className="inline-flex items-center justify-center gap-2 border border-slate-200 hover:border-slate-300 bg-white text-slate-700 px-7 py-4 rounded-2xl font-semibold text-sm transition-all duration-200 hover:bg-slate-50 active:scale-[0.97]"
             >
               Se connecter
             </Link>
           </div>
 
-          <div className="flex items-center gap-6 pt-2">
+          <div className="flex flex-wrap items-center gap-5 pt-1 fade-up-3">
             {[
               { icon: Shield, label: 'Conforme RGPD' },
-              { icon: Clock, label: 'Déploiement en 24h' },
-              { icon: Award, label: 'Support dédié' },
+              { icon: Clock,  label: 'En ligne en 24h' },
+              { icon: Award,  label: 'Support dédié' },
             ].map(({ icon: Icon, label }) => (
               <div key={label} className="flex items-center gap-2 text-slate-400 text-sm">
                 <Icon className="w-4 h-4 text-blue-400 flex-shrink-0" />
-                <span>{label}</span>
+                <span className="font-medium">{label}</span>
               </div>
             ))}
           </div>
         </div>
 
-        {/* Right — dashboard mockup */}
-        <div className="hidden lg:block relative">
-          {/* Main card */}
-          <div className="relative bg-white/[0.06] backdrop-blur-2xl border border-white/10 rounded-3xl p-6 shadow-2xl">
-            {/* Window chrome */}
-            <div className="flex items-center gap-2 mb-5">
-              <div className="w-3 h-3 rounded-full bg-red-400/80" />
-              <div className="w-3 h-3 rounded-full bg-yellow-400/80" />
-              <div className="w-3 h-3 rounded-full bg-green-400/80" />
-              <div className="flex-1 bg-white/10 h-6 rounded-lg ml-3 flex items-center px-3">
-                <span className="text-white/30 text-xs">campus.universitysaas.fr</span>
+        {/* Right — illustrated dashboard + floating cards */}
+        <div className="hidden lg:block relative h-[520px] fade-up-2">
+
+          {/* Main dashboard card */}
+          <div className="absolute inset-x-8 top-8 bottom-8 bg-white rounded-3xl border border-slate-100 shadow-2xl shadow-slate-200/60 overflow-hidden">
+            {/* Header bar */}
+            <div className="bg-slate-50 border-b border-slate-100 px-5 py-3.5 flex items-center gap-2.5">
+              <div className="flex gap-1.5">
+                <div className="w-3 h-3 rounded-full bg-red-300" />
+                <div className="w-3 h-3 rounded-full bg-amber-300" />
+                <div className="w-3 h-3 rounded-full bg-emerald-300" />
               </div>
+              <div className="flex-1 bg-slate-200/60 rounded-lg h-6 ml-2" />
             </div>
 
-            {/* Stat row */}
-            <div className="grid grid-cols-3 gap-3 mb-4">
-              {[
-                { label: 'Étudiants', value: '1 248', delta: '+24', color: 'from-blue-500/20 to-blue-600/10', dot: 'bg-blue-400' },
-                { label: 'Cours actifs', value: '84', delta: '+6', color: 'from-green-500/20 to-green-600/10', dot: 'bg-green-400' },
-                { label: 'Taux réussite', value: '92%', delta: '+3%', color: 'from-purple-500/20 to-purple-600/10', dot: 'bg-purple-400' },
-              ].map(({ label, value, delta, color, dot }) => (
-                <div key={label} className={`bg-gradient-to-br ${color} border border-white/10 rounded-2xl p-3.5`}>
-                  <div className={`w-2 h-2 ${dot} rounded-full mb-3`} />
-                  <p className="text-white font-bold text-lg leading-none">{value}</p>
-                  <p className="text-white/50 text-xs mt-1">{label}</p>
-                  <p className="text-green-400 text-xs mt-1 font-medium">{delta}</p>
+            {/* Dashboard body */}
+            <div className="p-5 space-y-4">
+              {/* Stat row */}
+              <div className="grid grid-cols-3 gap-3">
+                {[
+                  { label: 'Étudiants',    value: '1 248', icon: Users,    color: 'bg-blue-50 text-blue-600' },
+                  { label: 'Cours actifs', value: '84',    icon: BookOpen, color: 'bg-emerald-50 text-emerald-600' },
+                  { label: 'Taux réussite', value: '92%',  icon: TrendingUp, color: 'bg-violet-50 text-violet-600' },
+                ].map(({ label, value, icon: Icon, color }) => (
+                  <div key={label} className="bg-slate-50 rounded-2xl p-3.5 border border-slate-100">
+                    <div className={`w-8 h-8 rounded-xl flex items-center justify-center mb-2.5 ${color}`}>
+                      <Icon className="w-4 h-4" />
+                    </div>
+                    <p className="text-lg font-black text-slate-900">{value}</p>
+                    <p className="text-xs text-slate-400 mt-0.5">{label}</p>
+                  </div>
+                ))}
+              </div>
+
+              {/* Bar chart */}
+              <div className="bg-slate-50 rounded-2xl p-4 border border-slate-100">
+                <div className="flex items-center justify-between mb-3">
+                  <p className="text-xs font-bold text-slate-500 uppercase tracking-wider">Inscriptions 2025</p>
+                  <span className="text-xs text-emerald-600 font-bold bg-emerald-50 px-2 py-0.5 rounded-full">↑ 12%</span>
                 </div>
-              ))}
-            </div>
-
-            {/* Chart area */}
-            <div className="bg-white/5 border border-white/8 rounded-2xl p-4 mb-4">
-              <div className="flex items-center justify-between mb-3">
-                <p className="text-white/60 text-xs font-medium">Inscriptions — Année 2025</p>
-                <span className="text-green-400 text-xs font-semibold">↑ 12%</span>
+                <div className="flex items-end gap-1.5 h-14">
+                  {[35, 50, 42, 65, 58, 80, 68, 85, 76, 90, 82, 88].map((h, i) => (
+                    <div key={i} className="flex-1 flex flex-col justify-end">
+                      <div
+                        className={`rounded-t-sm ${i === 11 ? 'bg-blue-600' : 'bg-blue-200'}`}
+                        style={{ height: `${h}%` }}
+                      />
+                    </div>
+                  ))}
+                </div>
               </div>
-              <div className="flex items-end gap-1.5 h-16">
-                {[38, 52, 45, 68, 60, 82, 70, 88, 78, 94, 86, 92].map((h, i) => (
-                  <div key={i} className="flex-1 flex flex-col justify-end">
-                    <div
-                      className="rounded-t-sm bg-gradient-to-t from-blue-600 to-blue-400 opacity-80"
-                      style={{ height: `${h}%` }}
-                    />
+
+              {/* Student list */}
+              <div className="space-y-2">
+                {[
+                  { name: 'Sophie Laurent',  prog: 'Master 1 — Droit',    grade: 'A+', color: 'from-blue-500 to-indigo-600' },
+                  { name: 'Martin Dupont',   prog: 'Licence 3 — Sciences', grade: 'B+', color: 'from-emerald-500 to-teal-600' },
+                  { name: 'Ahmad Karim',     prog: 'Licence 2 — Éco',      grade: 'A',  color: 'from-violet-500 to-purple-600' },
+                ].map(({ name, prog, grade, color }) => (
+                  <div key={name} className="flex items-center gap-3 p-2.5 rounded-xl hover:bg-slate-50 transition-colors">
+                    <div className={`w-8 h-8 rounded-xl bg-gradient-to-br ${color} flex items-center justify-center text-white text-xs font-bold flex-shrink-0`}>
+                      {name[0]}
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-sm font-semibold text-slate-800 truncate">{name}</p>
+                      <p className="text-xs text-slate-400 truncate">{prog}</p>
+                    </div>
+                    <span className="text-xs bg-emerald-50 text-emerald-600 border border-emerald-100 px-2 py-0.5 rounded-full font-bold">{grade}</span>
                   </div>
                 ))}
               </div>
             </div>
-
-            {/* Student list */}
-            <div className="space-y-2">
-              {[
-                { name: 'Martin Dupont', prog: 'Licence 3 — Sciences', badge: 'A+' },
-                { name: 'Sophie Laurent', prog: 'Master 1 — Droit', badge: 'B+' },
-                { name: 'Ahmad Karim', prog: 'Licence 2 — Éco', badge: 'A' },
-              ].map(({ name, prog, badge }) => (
-                <div key={name} className="flex items-center gap-3 bg-white/5 border border-white/8 rounded-xl px-3 py-2.5">
-                  <div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-white text-xs font-bold flex-shrink-0">
-                    {name[0]}
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <p className="text-white/90 text-sm font-medium truncate">{name}</p>
-                    <p className="text-white/40 text-xs truncate">{prog}</p>
-                  </div>
-                  <span className="text-xs bg-green-500/20 text-green-400 border border-green-500/20 px-2 py-0.5 rounded-full font-semibold">{badge}</span>
-                </div>
-              ))}
-            </div>
           </div>
 
-          {/* Floating notification cards */}
-          <div className="absolute -top-5 -right-6 bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl px-4 py-3 shadow-xl">
-            <p className="text-white/60 text-xs mb-0.5">Nouveaux inscrits</p>
-            <p className="text-white font-bold text-xl">+24 <span className="text-green-400 text-sm">ce mois</span></p>
-          </div>
-          <div className="absolute -bottom-5 -left-6 bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl px-4 py-3 shadow-xl">
-            <p className="text-white/60 text-xs mb-0.5">Revenus mensuels</p>
-            <p className="text-white font-bold text-xl">8 400 € <span className="text-green-400 text-sm">↑ 12%</span></p>
-          </div>
+          {/* Floating cards */}
+          <FloatingCard className="-top-2 -right-2 float">
+            <p className="text-xs text-slate-400 font-medium mb-1">Nouveaux inscrits</p>
+            <p className="text-2xl font-black text-slate-900">+24</p>
+            <p className="text-xs text-emerald-500 font-semibold mt-0.5">ce mois</p>
+          </FloatingCard>
+
+          <FloatingCard className="-bottom-2 -left-4 float-2">
+            <p className="text-xs text-slate-400 font-medium mb-1">Revenus mensuels</p>
+            <p className="text-xl font-black text-slate-900">8 400 €</p>
+            <p className="text-xs text-emerald-500 font-semibold mt-0.5">↑ 12% vs mois dernier</p>
+          </FloatingCard>
         </div>
       </div>
 
-      {/* Trusted by */}
-      <div className="mt-24 pt-8 border-t border-white/8">
-        <p className="text-center text-slate-500 text-sm mb-6 uppercase tracking-widest text-xs">Déjà choisi par des établissements d'excellence</p>
+      {/* Trusted by strip */}
+      <div className="mt-24 pt-8 border-t border-slate-100 fade-up-4">
+        <p className="text-center text-slate-300 text-xs font-bold uppercase tracking-widest mb-7">
+          Déjà choisi par des établissements d'excellence
+        </p>
         <div className="flex flex-wrap justify-center gap-10">
           {['Université Paris Tech', 'École Nationale Sup.', 'Institut Médical Lyon', 'Université de Bordeaux', 'ENIB Sciences'].map((uni) => (
-            <span key={uni} className="text-white/25 font-semibold text-sm">{uni}</span>
+            <span key={uni} className="text-slate-300 font-bold text-sm">{uni}</span>
           ))}
         </div>
       </div>
