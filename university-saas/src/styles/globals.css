@@ -15,16 +15,6 @@
 }
 
 @layer utilities {
-  .font-display {
-    font-family: 'Fraunces', Georgia, 'Times New Roman', serif;
-    font-optical-sizing: auto;
-  }
-  .paper { background-color: #faf9f7; }
-  .ink   { background-color: #0b1220; }
-  .hairline { border-color: rgba(15, 23, 42, 0.1); }
-
-  .marquee { animation: marquee 30s linear infinite; }
-
   .fade-up   { animation: fadeUp 0.55s cubic-bezier(0.22,1,0.36,1) both; }
   .fade-up-1 { animation: fadeUp 0.55s 0.08s cubic-bezier(0.22,1,0.36,1) both; }
   .fade-up-2 { animation: fadeUp 0.55s 0.16s cubic-bezier(0.22,1,0.36,1) both; }
@@ -60,10 +50,6 @@
 @keyframes float {
   0%,100% { transform: translateY(0); }
   50%     { transform: translateY(-10px); }
-}
-@keyframes marquee {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
 }
 
 /* Scrollbar */
