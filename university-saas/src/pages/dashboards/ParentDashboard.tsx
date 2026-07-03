@@ -1,6 +1,8 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { GraduationCap, CreditCard, Bell, MessageSquare, TrendingUp, AlertCircle } from 'lucide-react';
+import { MessagingView } from '../../components/messaging/MessagingView';
+import { AbsencesView } from '../../components/absences/AbsencesView';
 import { StatCard, Card } from '../../components/ui/Card';
 import { Table } from '../../components/ui/Table';
 import { Button } from '../../components/ui/Button';
@@ -172,8 +174,9 @@ const ParentDashboard: React.FC = () => (
   <Routes>
     <Route index element={<ParentOverview />} />
     <Route path="notes" element={<ParentGrades />} />
-    <Route path="absences" element={<ParentOverview />} />
+    <Route path="absences" element={<AbsencesView />} />
     <Route path="paiements" element={<ParentOverview />} />
+    <Route path="messagerie" element={<MessagingView />} />
     <Route path="*" element={<ParentOverview />} />
   </Routes>
 );

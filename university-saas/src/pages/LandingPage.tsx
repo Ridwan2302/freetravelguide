@@ -29,6 +29,12 @@ const LandingPage: React.FC = () => (
               {label}
             </a>
           ))}
+          <Link to="/blog" className="text-sm text-slate-500 hover:text-slate-900 font-medium transition-colors duration-150">
+            Blog
+          </Link>
+          <Link to="/contact" className="text-sm text-slate-500 hover:text-slate-900 font-medium transition-colors duration-150">
+            Contact
+          </Link>
         </div>
 
         <div className="flex items-center gap-3">

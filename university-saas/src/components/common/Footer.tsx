@@ -31,12 +31,13 @@ export const Footer: React.FC = () => (
           </ul>
         </div>
 
-        {/* Support */}
+        {/* Ressources */}
         <div>
-          <h4 className="text-white font-semibold mb-4 text-sm">Support</h4>
+          <h4 className="text-white font-semibold mb-4 text-sm">Ressources</h4>
           <ul className="space-y-2.5 text-sm">
-            <li><a href="#" className="hover:text-white transition-colors">Documentation</a></li>
-            <li><a href="mailto:contact@universitysaas.fr" className="hover:text-white transition-colors">Nous contacter</a></li>
+            <li><Link to="/blog" className="hover:text-white transition-colors">Blog & Actualités</Link></li>
+            <li><Link to="/contact" className="hover:text-white transition-colors">Nous contacter</Link></li>
+            <li><a href="mailto:demo@universitysaas.fr" className="hover:text-white transition-colors">Demander une démo</a></li>
             <li><a href="#" className="hover:text-white transition-colors">FAQ</a></li>
           </ul>
         </div>

@@ -16,6 +16,8 @@ import { Loader } from './components/common/Loader';
 import LandingPage from './pages/LandingPage';
 import Login from './pages/Login';
 import Onboarding from './pages/Onboarding';
+import Blog from './pages/Blog';
+import Contact from './pages/Contact';
 import SuperAdminDashboard from './pages/dashboards/SuperAdminDashboard';
 import UniversityAdminDashboard from './pages/dashboards/UniversityAdminDashboard';
 import TeacherDashboard from './pages/dashboards/TeacherDashboard';
@@ -62,6 +64,8 @@ const AppRoutes: React.FC = () => {
             <Route path="/" element={<LandingPage />} />
             <Route path="/connexion" element={<Login />} />
             <Route path="/onboarding" element={<Onboarding />} />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/contact" element={<Contact />} />
 
             {/* Auto-redirect after login */}
             <Route path="/dashboard" element={<RoleRedirect />} />

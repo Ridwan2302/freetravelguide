@@ -94,13 +94,12 @@ export const FeaturesGrid: React.FC = () => (
           return (
             <div
               key={profile.title}
-              className={`group bg-white rounded-3xl border border-slate-100 shadow-sm overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-slate-200/60 ${isLarge ? 'md:col-span-2 md:grid md:grid-cols-2' : ''}`}
+              className={`group bg-white rounded-3xl border border-slate-100 shadow-sm overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-slate-200/60 ${isLarge ? 'md:col-span-2' : ''}`}
             >
               {/* Colored top band */}
-              <div className={`h-1.5 bg-gradient-to-r ${profile.gradient} ${isLarge ? 'md:hidden' : ''}`} />
-              {isLarge && <div className={`hidden md:block w-1.5 bg-gradient-to-b ${profile.gradient}`} />}
+              <div className={`h-1.5 bg-gradient-to-r ${profile.gradient}`} />
 
-              <div className={`p-8 ${isLarge ? 'md:col-span-1' : ''}`}>
+              <div className="p-8">
                 {/* Icon */}
                 <div className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${profile.gradient} flex items-center justify-center mb-5 shadow-md ring-4 ${profile.ring}`}>
                   <Icon className="w-6 h-6 text-white" />
@@ -125,27 +124,6 @@ export const FeaturesGrid: React.FC = () => (
                 </div>
               </div>
 
-              {isLarge && (
-                <div className="hidden md:flex items-center justify-center p-8 bg-gradient-to-br from-slate-50 to-blue-50/50">
-                  <div className="w-full max-w-xs space-y-3">
-                    {[
-                      { label: 'Étudiants actifs', value: '1 248', pct: 85 },
-                      { label: 'Taux de présence', value: '96%',   pct: 96 },
-                      { label: 'Cours planifiés',  value: '84',    pct: 70 },
-                    ].map(({ label, value, pct }) => (
-                      <div key={label} className="bg-white rounded-2xl p-4 border border-slate-100 shadow-sm">
-                        <div className="flex justify-between items-center mb-2">
-                          <span className="text-xs font-semibold text-slate-500">{label}</span>
-                          <span className="text-sm font-black text-slate-900">{value}</span>
-                        </div>
-                        <div className="h-1.5 bg-slate-100 rounded-full overflow-hidden">
-                          <div className="h-full bg-gradient-to-r from-blue-500 to-indigo-600 rounded-full" style={{ width: `${pct}%` }} />
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
             </div>
           );
         })}

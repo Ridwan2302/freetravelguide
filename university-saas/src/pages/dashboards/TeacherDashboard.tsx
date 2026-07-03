@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { BookOpen, GraduationCap, ClipboardList, Plus, Save, Users } from 'lucide-react';
+import { MessagingView } from '../../components/messaging/MessagingView';
+import { CalendarView } from '../../components/calendar/CalendarView';
+import { AbsencesView } from '../../components/absences/AbsencesView';
 import { StatCard, Card } from '../../components/ui/Card';
 import { Table } from '../../components/ui/Table';
 import { Button } from '../../components/ui/Button';
@@ -289,6 +292,9 @@ const TeacherDashboard: React.FC = () => (
     <Route path="cours" element={<TeacherOverview />} />
     <Route path="notes" element={<GradeEntry />} />
     <Route path="devoirs" element={<AssignmentsView />} />
+    <Route path="absences" element={<AbsencesView />} />
+    <Route path="calendrier" element={<CalendarView />} />
+    <Route path="messagerie" element={<MessagingView />} />
     <Route path="*" element={<TeacherOverview />} />
   </Routes>
 );

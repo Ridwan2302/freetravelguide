@@ -12,6 +12,10 @@ import { useAuthStore } from '../../store/authStore';
 import { formatDate, formatCurrency, computeGPA } from '../../lib/utils/helpers';
 import { STATUS_COLORS, DAYS_OF_WEEK } from '../../lib/utils/constants';
 import type { Grade, Payment, Course } from '../../types';
+import { MessagingView } from '../../components/messaging/MessagingView';
+import { CalendarView } from '../../components/calendar/CalendarView';
+import { AbsencesView } from '../../components/absences/AbsencesView';
+import { BulletinPDF } from '../../components/bulletin/BulletinPDF';
 
 const StudentOverview: React.FC = () => {
   const { grades, courses, payments, students } = useUniversityStore();
@@ -347,9 +351,13 @@ const StudentDashboard: React.FC = () => (
   <Routes>
     <Route index element={<StudentOverview />} />
     <Route path="emploi-du-temps" element={<ScheduleView />} />
+    <Route path="calendrier" element={<CalendarView />} />
     <Route path="cours" element={<StudentOverview />} />
     <Route path="notes" element={<GradesView />} />
+    <Route path="bulletin" element={<BulletinPDF />} />
     <Route path="paiements" element={<PaymentsView />} />
+    <Route path="absences" element={<AbsencesView />} />
+    <Route path="messagerie" element={<MessagingView />} />
     <Route path="*" element={<StudentOverview />} />
   </Routes>
 );

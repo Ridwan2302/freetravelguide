@@ -25,6 +25,10 @@ import { formatDate, formatCurrency, generateMatricule, getCurrentAcademicYear }
 import { STATUS_COLORS, DEPARTMENTS, PROGRAMS } from '../../lib/utils/constants';
 import { studentSchema, teacherSchema, courseSchema, type StudentFormData, type TeacherFormData, type CourseFormData } from '../../lib/utils/validators';
 import type { Student, Teacher, Course, Payment, AuditLog } from '../../types';
+import { MessagingView } from '../../components/messaging/MessagingView';
+import { AbsencesView } from '../../components/absences/AbsencesView';
+import { DepartmentStats } from '../../components/stats/DepartmentStats';
+import { CalendarView } from '../../components/calendar/CalendarView';
 
 // =========== Overview ===========
 const Overview: React.FC = () => {
@@ -641,6 +645,10 @@ const UniversityAdminDashboard: React.FC = () => (
     <Route path="cours" element={<CoursesManagement />} />
     <Route path="paiements" element={<PaymentsManagement />} />
     <Route path="audit" element={<AuditLogsView />} />
+    <Route path="absences" element={<AbsencesView />} />
+    <Route path="messagerie" element={<MessagingView />} />
+    <Route path="statistiques" element={<DepartmentStats />} />
+    <Route path="calendrier" element={<CalendarView />} />
     <Route path="*" element={<Overview />} />
   </Routes>
 );

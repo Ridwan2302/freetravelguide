@@ -4,6 +4,7 @@ import { Bell, LogOut, Settings, ChevronDown, Menu, GraduationCap } from 'lucide
 import { useAuthStore } from '../../store/authStore';
 import { logoutUser } from '../../lib/firebase/auth';
 import { ROLE_LABELS } from '../../lib/utils/constants';
+import { WeatherWidget } from './WeatherWidget';
 
 interface HeaderProps {
   onMenuClick?: () => void;
@@ -44,6 +45,7 @@ export const Header: React.FC<HeaderProps> = ({ onMenuClick }) => {
       </div>
 
       <div className="flex items-center gap-1.5">
+        <WeatherWidget />
         <button className="w-9 h-9 rounded-xl hover:bg-slate-100 flex items-center justify-center text-slate-500 relative transition-colors">
           <Bell className="w-4 h-4" />
           <span className="absolute top-2 right-2 w-1.5 h-1.5 bg-blue-500 rounded-full" />
