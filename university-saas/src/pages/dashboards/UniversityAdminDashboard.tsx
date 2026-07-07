@@ -124,12 +124,22 @@ const CredentialsModal: React.FC<{ credentials: NewCredentials | null; onClose: 
   const [copied, setCopied] = useState(false);
   if (!credentials) return null;
 
+  const credentialsText =
+    `Bonjour ${credentials.name},%0D%0A%0D%0AVotre espace ${credentials.role} University SaaS est prêt.%0D%0A%0D%0AConnexion : ${window.location.origin}/connexion%0D%0AEmail : ${credentials.email}%0D%0AMot de passe provisoire : ${credentials.password}%0D%0A%0D%0AChoisissez l'espace « ${credentials.role} » sur la page de connexion, puis identifiez-vous.%0D%0A%0D%0ACordialement,%0D%0AL'administration`;
+
   const copyAll = () => {
     navigator.clipboard.writeText(
       `Espace ${credentials.role} — University SaaS\nConnexion : ${window.location.origin}/connexion\nEmail : ${credentials.email}\nMot de passe : ${credentials.password}`
     );
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
+  };
+
+  const sendByEmail = () => {
+    window.open(
+      `mailto:${credentials.email}?subject=${encodeURIComponent(`Vos accès University SaaS — Espace ${credentials.role}`)}&body=${credentialsText}`,
+      '_blank'
+    );
   };
 
   return (
@@ -139,6 +149,13 @@ const CredentialsModal: React.FC<{ credentials: NewCredentials | null; onClose: 
           <CheckCircle className="w-5 h-5 text-emerald-500 flex-shrink-0" />
           <p className="text-sm text-emerald-800">
             <span className="font-bold">{credentials.name}</span> peut maintenant se connecter à son espace {credentials.role}.
+          </p>
+        </div>
+
+        <div className="bg-blue-50 border border-blue-100 rounded-xl p-4">
+          <p className="text-sm text-blue-800">
+            📧 Un email a été envoyé automatiquement à <span className="font-bold">{credentials.email}</span> avec
+            un lien pour définir son mot de passe.
           </p>
         </div>
 
@@ -156,13 +173,16 @@ const CredentialsModal: React.FC<{ credentials: NewCredentials | null; onClose: 
         </div>
 
         <p className="text-xs text-slate-400 leading-relaxed">
-          ⚠️ Ce mot de passe ne sera plus affiché. Transmettez ces identifiants à la personne concernée —
-          elle pourra les utiliser sur la page de connexion en choisissant son espace.
+          ⚠️ Ce mot de passe provisoire ne sera plus affiché. En cas de besoin, vous pouvez aussi le
+          transmettre manuellement ci-dessous.
         </p>
 
         <div className="flex gap-3">
           <Button variant="outline" onClick={copyAll} className="flex-1 justify-center">
-            {copied ? '✓ Copié !' : 'Copier les identifiants'}
+            {copied ? '✓ Copié !' : 'Copier'}
+          </Button>
+          <Button variant="outline" onClick={sendByEmail} className="flex-1 justify-center">
+            Envoyer par email
           </Button>
           <Button onClick={onClose} className="flex-1 justify-center">Terminé</Button>
         </div>

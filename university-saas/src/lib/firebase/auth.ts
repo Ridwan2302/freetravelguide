@@ -65,6 +65,11 @@ export const createManagedUser = async (
     await set(ref(database, `users/${user.uid}`), userData);
 
     await signOut(secondaryAuth);
+
+    // Envoyer automatiquement un email à la personne pour qu'elle définisse
+    // son mot de passe (email officiel Firebase, aucun serveur requis).
+    await sendPasswordResetEmail(auth, email).catch(() => {});
+
     return { uid: user.uid, password: pwd };
   } finally {
     await deleteApp(secondaryApp).catch(() => {});
