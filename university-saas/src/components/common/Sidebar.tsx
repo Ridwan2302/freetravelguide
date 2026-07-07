@@ -26,6 +26,7 @@ const NAV_ITEMS: Record<UserRole, NavItem[]> = {
     { to: '/dashboard/admin',               icon: <LayoutDashboard className="w-4 h-4" />, label: "Vue d'ensemble" },
     { to: '/dashboard/admin/etudiants',     icon: <Users className="w-4 h-4" />,           label: 'Étudiants' },
     { to: '/dashboard/admin/enseignants',   icon: <UserCheck className="w-4 h-4" />,       label: 'Enseignants' },
+    { to: '/dashboard/admin/parents',       icon: <Users className="w-4 h-4" />,            label: 'Parents' },
     { to: '/dashboard/admin/cours',         icon: <BookOpen className="w-4 h-4" />,         label: 'Cours & Programmes' },
     { to: '/dashboard/admin/paiements',     icon: <CreditCard className="w-4 h-4" />,      label: 'Paiements' },
     { to: '/dashboard/admin/absences',      icon: <AlertCircle className="w-4 h-4" />,      label: 'Absences' },

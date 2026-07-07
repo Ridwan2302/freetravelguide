@@ -20,7 +20,7 @@ import {
   createTeacher, createCourse, createPayment,
   getAuditLogs
 } from '../../lib/firebase/database';
-import { registerUser } from '../../lib/firebase/auth';
+import { createManagedUser } from '../../lib/firebase/auth';
 import { formatDate, formatCurrency, generateMatricule, getCurrentAcademicYear } from '../../lib/utils/helpers';
 import { STATUS_COLORS, DEPARTMENTS, PROGRAMS } from '../../lib/utils/constants';
 import { studentSchema, teacherSchema, courseSchema, type StudentFormData, type TeacherFormData, type CourseFormData } from '../../lib/utils/validators';
@@ -112,6 +112,65 @@ const Overview: React.FC = () => {
   );
 };
 
+// =========== Credentials modal (shown once after account creation) ===========
+interface NewCredentials {
+  name: string;
+  role: string;
+  email: string;
+  password: string;
+}
+
+const CredentialsModal: React.FC<{ credentials: NewCredentials | null; onClose: () => void }> = ({ credentials, onClose }) => {
+  const [copied, setCopied] = useState(false);
+  if (!credentials) return null;
+
+  const copyAll = () => {
+    navigator.clipboard.writeText(
+      `Espace ${credentials.role} — University SaaS\nConnexion : ${window.location.origin}/connexion\nEmail : ${credentials.email}\nMot de passe : ${credentials.password}`
+    );
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
+  return (
+    <Modal isOpen onClose={onClose} title="Compte créé avec succès">
+      <div className="space-y-5">
+        <div className="bg-emerald-50 border border-emerald-100 rounded-xl p-4 flex items-center gap-3">
+          <CheckCircle className="w-5 h-5 text-emerald-500 flex-shrink-0" />
+          <p className="text-sm text-emerald-800">
+            <span className="font-bold">{credentials.name}</span> peut maintenant se connecter à son espace {credentials.role}.
+          </p>
+        </div>
+
+        <div className="bg-slate-50 border border-slate-100 rounded-xl divide-y divide-slate-100">
+          {[
+            { label: 'Espace', value: credentials.role },
+            { label: 'Email', value: credentials.email },
+            { label: 'Mot de passe provisoire', value: credentials.password },
+          ].map(({ label, value }) => (
+            <div key={label} className="flex items-center justify-between px-4 py-3">
+              <span className="text-xs font-bold text-slate-400 uppercase tracking-wide">{label}</span>
+              <span className="text-sm font-mono font-bold text-slate-800">{value}</span>
+            </div>
+          ))}
+        </div>
+
+        <p className="text-xs text-slate-400 leading-relaxed">
+          ⚠️ Ce mot de passe ne sera plus affiché. Transmettez ces identifiants à la personne concernée —
+          elle pourra les utiliser sur la page de connexion en choisissant son espace.
+        </p>
+
+        <div className="flex gap-3">
+          <Button variant="outline" onClick={copyAll} className="flex-1 justify-center">
+            {copied ? '✓ Copié !' : 'Copier les identifiants'}
+          </Button>
+          <Button onClick={onClose} className="flex-1 justify-center">Terminé</Button>
+        </div>
+      </div>
+    </Modal>
+  );
+};
+
 // =========== Students ===========
 const StudentsManagement: React.FC = () => {
   const { students, university, addStudent, updateStudentInStore } = useUniversityStore();
@@ -121,6 +180,7 @@ const StudentsManagement: React.FC = () => {
   const [search, setSearch] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [newCredentials, setNewCredentials] = useState<NewCredentials | null>(null);
 
   const { register, handleSubmit, formState: { errors }, reset } = useForm<StudentFormData>({
     resolver: zodResolver(studentSchema),
@@ -137,14 +197,14 @@ const StudentsManagement: React.FC = () => {
     setLoading(true);
     setError(null);
     try {
-      // Créer le compte utilisateur
-      const fbUser = await registerUser(
+      // Créer le compte utilisateur (sans déconnecter l'admin)
+      const { uid, password } = await createManagedUser(
         data.email,
-        `Temp${Date.now()}!`,
         'student',
         user.universityId,
         { firstName: data.firstName, lastName: data.lastName, phone: data.phone }
       );
+      const fbUser = { uid };
 
       const matricule = generateMatricule(
         university?.slug ?? 'UNIV',
@@ -182,6 +242,7 @@ const StudentsManagement: React.FC = () => {
       await logAction('CREATE_STUDENT', 'student', studentId, matricule, `Nouvel étudiant créé: ${data.firstName} ${data.lastName}`);
       reset();
       setShowModal(false);
+      setNewCredentials({ name: `${data.firstName} ${data.lastName}`, role: 'Étudiant', email: data.email, password });
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Erreur lors de la création');
     } finally {
@@ -285,6 +346,8 @@ const StudentsManagement: React.FC = () => {
           </div>
         </form>
       </Modal>
+
+      <CredentialsModal credentials={newCredentials} onClose={() => setNewCredentials(null)} />
     </div>
   );
 };
@@ -297,6 +360,7 @@ const TeachersManagement: React.FC = () => {
   const [showModal, setShowModal] = useState(false);
   const [loading, setLoading] = useState(false);
   const [search, setSearch] = useState('');
+  const [newCredentials, setNewCredentials] = useState<NewCredentials | null>(null);
 
   const { register, handleSubmit, formState: { errors }, reset } = useForm<TeacherFormData>({
     resolver: zodResolver(teacherSchema),
@@ -311,10 +375,11 @@ const TeachersManagement: React.FC = () => {
     if (!user?.universityId) return;
     setLoading(true);
     try {
-      const fbUser = await registerUser(
-        data.email, `Temp${Date.now()}!`, 'teacher', user.universityId,
+      const { uid, password } = await createManagedUser(
+        data.email, 'teacher', user.universityId,
         { firstName: data.firstName, lastName: data.lastName }
       );
+      const fbUser = { uid };
       const employeeId = `EMP-${(teachers.length + 1).toString().padStart(5, '0')}`;
       const teacherId = await createTeacher(user.universityId, {
         userId: fbUser.uid,
@@ -332,6 +397,7 @@ const TeachersManagement: React.FC = () => {
       await logAction('CREATE_TEACHER', 'teacher', teacherId, employeeId, `Nouvel enseignant: ${data.firstName} ${data.lastName}`);
       reset();
       setShowModal(false);
+      setNewCredentials({ name: `${data.firstName} ${data.lastName}`, role: 'Enseignant', email: data.email, password });
     } catch (err) {
       console.error(err);
     } finally {
@@ -404,6 +470,125 @@ const TeachersManagement: React.FC = () => {
           </div>
         </form>
       </Modal>
+
+      <CredentialsModal credentials={newCredentials} onClose={() => setNewCredentials(null)} />
+    </div>
+  );
+};
+
+// =========== Parents ===========
+const ParentsManagement: React.FC = () => {
+  const { students, updateStudentInStore } = useUniversityStore();
+  const { user } = useAuthStore();
+  const { logAction } = useTenant();
+  const [showModal, setShowModal] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [newCredentials, setNewCredentials] = useState<NewCredentials | null>(null);
+  const [form, setForm] = useState({ firstName: '', lastName: '', email: '', phone: '', studentId: '' });
+
+  const linkedStudents = students.filter((s) => s.parentId);
+  const unlinkedStudents = students.filter((s) => !s.parentId);
+
+  const onSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!user?.universityId) return;
+    if (!form.firstName || !form.lastName || !form.email || !form.studentId) {
+      setError('Tous les champs sont requis (sauf téléphone).');
+      return;
+    }
+    setLoading(true);
+    setError(null);
+    try {
+      const { uid, password } = await createManagedUser(
+        form.email, 'parent', user.universityId,
+        { firstName: form.firstName, lastName: form.lastName, phone: form.phone }
+      );
+
+      // Rattacher le parent à l'étudiant
+      await updateStudent(user.universityId, form.studentId, { parentId: uid });
+      updateStudentInStore(form.studentId, { parentId: uid });
+
+      await logAction('CREATE_PARENT', 'user', uid, form.email, `Nouveau parent: ${form.firstName} ${form.lastName}`);
+      setShowModal(false);
+      setNewCredentials({ name: `${form.firstName} ${form.lastName}`, role: 'Parent', email: form.email, password });
+      setForm({ firstName: '', lastName: '', email: '', phone: '', studentId: '' });
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Erreur lors de la création');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <div className="space-y-6">
+      <div className="flex items-center justify-between">
+        <div>
+          <h1 className="text-2xl font-bold text-gray-900">Gestion des Parents</h1>
+          <p className="text-gray-500 text-sm">{linkedStudents.length} étudiant(s) avec parent rattaché</p>
+        </div>
+        <Button onClick={() => setShowModal(true)} icon={<Plus className="w-4 h-4" />}>
+          Ajouter un parent
+        </Button>
+      </div>
+
+      <Card>
+        <h3 className="font-semibold text-gray-900 mb-4">Étudiants et rattachement parental</h3>
+        <Table
+          columns={[
+            { key: 'matricule', header: 'Matricule', render: (s: Student) => (
+              <span className="font-mono text-sm font-medium text-blue-600">{s.matricule}</span>
+            )},
+            { key: 'program', header: 'Programme', render: (s: Student) => (
+              <div>
+                <p className="font-medium text-sm text-gray-900">{s.program}</p>
+                <p className="text-xs text-gray-500">{s.department}</p>
+              </div>
+            )},
+            { key: 'parentId', header: 'Parent', render: (s: Student) => (
+              s.parentId ? (
+                <span className="text-xs px-2 py-1 rounded-full font-medium bg-green-100 text-green-700">✓ Rattaché</span>
+              ) : (
+                <span className="text-xs px-2 py-1 rounded-full font-medium bg-gray-100 text-gray-500">Non rattaché</span>
+              )
+            )},
+          ]}
+          data={students}
+          keyExtractor={(s) => s.id}
+          emptyMessage="Aucun étudiant — inscrivez d'abord des étudiants"
+        />
+      </Card>
+
+      <Modal isOpen={showModal} onClose={() => setShowModal(false)} title="Créer un compte parent" size="lg">
+        <form onSubmit={onSubmit} className="space-y-4">
+          {error && <p className="text-sm text-red-500 bg-red-50 p-3 rounded-lg">{error}</p>}
+          <div className="grid grid-cols-2 gap-4">
+            <Input label="Prénom" required value={form.firstName} onChange={(e) => setForm((f) => ({ ...f, firstName: e.target.value }))} />
+            <Input label="Nom" required value={form.lastName} onChange={(e) => setForm((f) => ({ ...f, lastName: e.target.value }))} />
+          </div>
+          <Input label="Email" type="email" required value={form.email} onChange={(e) => setForm((f) => ({ ...f, email: e.target.value }))} />
+          <Input label="Téléphone" value={form.phone} onChange={(e) => setForm((f) => ({ ...f, phone: e.target.value }))} />
+          <Select
+            label="Étudiant à rattacher"
+            required
+            value={form.studentId}
+            onChange={(e) => setForm((f) => ({ ...f, studentId: e.target.value }))}
+            options={[
+              { value: '', label: unlinkedStudents.length === 0 ? 'Aucun étudiant disponible' : 'Sélectionner un étudiant...' },
+              ...unlinkedStudents.map((s) => ({ value: s.id, label: `${s.matricule} — ${s.program}` })),
+            ]}
+          />
+          <p className="text-xs text-slate-400">
+            Le parent aura accès en lecture aux notes, absences et paiements de cet étudiant.
+          </p>
+          <div className="flex gap-3 pt-2">
+            <Button type="button" variant="outline" onClick={() => setShowModal(false)} className="flex-1 justify-center">Annuler</Button>
+            <Button type="submit" loading={loading} className="flex-1 justify-center">Créer le compte parent</Button>
+          </div>
+        </form>
+      </Modal>
+
+      <CredentialsModal credentials={newCredentials} onClose={() => setNewCredentials(null)} />
     </div>
   );
 };
@@ -642,6 +827,7 @@ const UniversityAdminDashboard: React.FC = () => (
     <Route index element={<Overview />} />
     <Route path="etudiants" element={<StudentsManagement />} />
     <Route path="enseignants" element={<TeachersManagement />} />
+    <Route path="parents" element={<ParentsManagement />} />
     <Route path="cours" element={<CoursesManagement />} />
     <Route path="paiements" element={<PaymentsManagement />} />
     <Route path="audit" element={<AuditLogsView />} />
