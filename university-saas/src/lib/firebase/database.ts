@@ -5,6 +5,32 @@ import type {
   Grade, Enrollment, Payment, AuditLog, Subscription
 } from '../../types';
 
+// Firebase RTDB supprime les tableaux vides à l'enregistrement : on remet
+// les valeurs par défaut à la lecture pour éviter les crashs (undefined.length).
+const normalizeStudent = (s: Student): Student => ({
+  ...s,
+  enrollmentHistory: s.enrollmentHistory ?? [],
+  academicHistory: s.academicHistory ?? [],
+});
+
+const normalizeTeacher = (t: Teacher): Teacher => ({
+  ...t,
+  specialization: t.specialization ?? [],
+  qualifications: t.qualifications ?? [],
+  courses: t.courses ?? [],
+  workload: t.workload ?? { totalHours: 0, maxHours: 300, currentSemester: 'S1' },
+});
+
+const normalizeCourse = (c: Course): Course => ({
+  ...c,
+  schedule: c.schedule ?? [],
+  enrolledStudents: c.enrolledStudents ?? [],
+  materials: c.materials ?? [],
+  assignments: c.assignments ?? [],
+  prerequisites: c.prerequisites ?? [],
+  learningObjectives: c.learningObjectives ?? [],
+});
+
 // ---- Universités ----
 export const createUniversity = async (data: Omit<University, 'id'>): Promise<string> => {
   const newRef = push(ref(database, 'universities'));
@@ -38,12 +64,12 @@ export const createStudent = async (universityId: string, data: Omit<Student, 'i
 export const getStudents = async (universityId: string): Promise<Student[]> => {
   const snap = await get(ref(database, `universities/${universityId}/students`));
   if (!snap.exists()) return [];
-  return Object.values(snap.val()) as Student[];
+  return (Object.values(snap.val()) as Student[]).map(normalizeStudent);
 };
 
 export const getStudent = async (universityId: string, studentId: string): Promise<Student | null> => {
   const snap = await get(ref(database, `universities/${universityId}/students/${studentId}`));
-  return snap.exists() ? snap.val() : null;
+  return snap.exists() ? normalizeStudent(snap.val()) : null;
 };
 
 export const updateStudent = (universityId: string, studentId: string, data: Partial<Student>) =>
@@ -63,7 +89,7 @@ export const createTeacher = async (universityId: string, data: Omit<Teacher, 'i
 export const getTeachers = async (universityId: string): Promise<Teacher[]> => {
   const snap = await get(ref(database, `universities/${universityId}/teachers`));
   if (!snap.exists()) return [];
-  return Object.values(snap.val()) as Teacher[];
+  return (Object.values(snap.val()) as Teacher[]).map(normalizeTeacher);
 };
 
 export const updateTeacher = (universityId: string, teacherId: string, data: Partial<Teacher>) =>
@@ -80,7 +106,7 @@ export const createCourse = async (universityId: string, data: Omit<Course, 'id'
 export const getCourses = async (universityId: string): Promise<Course[]> => {
   const snap = await get(ref(database, `universities/${universityId}/courses`));
   if (!snap.exists()) return [];
-  return Object.values(snap.val()) as Course[];
+  return (Object.values(snap.val()) as Course[]).map(normalizeCourse);
 };
 
 export const updateCourse = (universityId: string, courseId: string, data: Partial<Course>) =>

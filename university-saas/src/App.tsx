@@ -24,6 +24,29 @@ import TeacherDashboard from './pages/dashboards/TeacherDashboard';
 import StudentDashboard from './pages/dashboards/StudentDashboard';
 import ParentDashboard from './pages/dashboards/ParentDashboard';
 
+class ErrorBoundary extends React.Component<{ children: React.ReactNode }, { error: Error | null }> {
+  state = { error: null as Error | null };
+  static getDerivedStateFromError(error: Error) { return { error }; }
+  render() {
+    if (this.state.error) {
+      return (
+        <div className="min-h-screen flex items-center justify-center bg-slate-50 p-6">
+          <div className="bg-white rounded-3xl border border-slate-100 shadow-sm p-10 max-w-md text-center">
+            <p className="text-4xl mb-4">😕</p>
+            <h1 className="text-xl font-black text-slate-900 mb-2">Une erreur est survenue</h1>
+            <p className="text-sm text-slate-500 mb-6">La page a rencontré un problème inattendu. Rechargez ou revenez à l'accueil.</p>
+            <div className="flex gap-3 justify-center">
+              <button onClick={() => window.location.reload()} className="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2.5 rounded-xl font-bold text-sm">Recharger</button>
+              <a href="/" className="border border-slate-200 text-slate-600 px-5 py-2.5 rounded-xl font-bold text-sm hover:bg-slate-50">Accueil</a>
+            </div>
+          </div>
+        </div>
+      );
+    }
+    return this.props.children;
+  }
+}
+
 const AppInitializer: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const { setUser, setFirebaseUser, setLoading } = useAuthStore();
 
@@ -157,13 +180,15 @@ const AppRoutes: React.FC = () => {
 
 function App() {
   return (
-    <BrowserRouter>
-      <AppInitializer>
-        <UniversityDataLoader>
-          <AppRoutes />
-        </UniversityDataLoader>
-      </AppInitializer>
-    </BrowserRouter>
+    <ErrorBoundary>
+      <BrowserRouter>
+        <AppInitializer>
+          <UniversityDataLoader>
+            <AppRoutes />
+          </UniversityDataLoader>
+        </AppInitializer>
+      </BrowserRouter>
+    </ErrorBoundary>
   );
 }
 
