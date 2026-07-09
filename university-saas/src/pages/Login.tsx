@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { GraduationCap, Mail, Lock, Eye, EyeOff, Building, Users, BookOpen, Heart } from 'lucide-react';
+import { GraduationCap, Mail, Lock, Eye, EyeOff, Building, Users, BookOpen } from 'lucide-react';
 import { loginUser, logoutUser } from '../lib/firebase/auth';
 import { useAuthStore } from '../store/authStore';
 import { getUserData } from '../lib/firebase/auth';
@@ -18,7 +18,7 @@ const ROLE_TABS: { key: RoleTab; label: string; icon: React.ElementType; desc: s
   { key: 'admin',   label: 'Administration', icon: Building,      desc: 'Pilotez votre établissement',      accent: 'from-blue-500 to-indigo-600',   ring: 'ring-blue-200 border-blue-300 bg-blue-50/50' },
   { key: 'teacher', label: 'Enseignant',     icon: BookOpen,      desc: 'Cours, notes et devoirs',          accent: 'from-emerald-500 to-teal-600',  ring: 'ring-emerald-200 border-emerald-300 bg-emerald-50/50' },
   { key: 'student', label: 'Étudiant',       icon: GraduationCap, desc: 'Votre parcours académique',        accent: 'from-violet-500 to-purple-600', ring: 'ring-violet-200 border-violet-300 bg-violet-50/50' },
-  { key: 'parent',  label: 'Parent',         icon: Heart,         desc: 'Suivez votre enfant',              accent: 'from-orange-500 to-amber-600',  ring: 'ring-orange-200 border-orange-300 bg-orange-50/50' },
+  { key: 'parent',  label: 'Parent',         icon: Users,         desc: 'Suivez votre enfant',              accent: 'from-orange-500 to-amber-600',  ring: 'ring-orange-200 border-orange-300 bg-orange-50/50' },
 ];
 
 // Quels rôles réels sont acceptés pour chaque onglet
