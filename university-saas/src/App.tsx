@@ -28,16 +28,34 @@ const AppInitializer: React.FC<{ children: React.ReactNode }> = ({ children }) =
   const { setUser, setFirebaseUser, setLoading } = useAuthStore();
 
   useEffect(() => {
+    let firstEvent = true;
+
     const unsubscribe = onAuthStateChanged(auth, async (fbUser) => {
-      setLoading(true);
+      const { user: persistedUser } = useAuthStore.getState();
+
+      // N'afficher le loader bloquant que s'il n'y a pas déjà une session
+      // restaurée depuis le stockage local — sinon on laisse la page affichée.
+      if (!persistedUser) setLoading(true);
+
       if (fbUser) {
         setFirebaseUser({ uid: fbUser.uid, email: fbUser.email });
-        const userData = await getUserData(fbUser.uid);
-        setUser(userData);
+        try {
+          const userData = await getUserData(fbUser.uid);
+          // Ne jamais écraser une session valide par null si la lecture échoue
+          if (userData) setUser(userData);
+          else if (!persistedUser) setUser(null);
+        } catch {
+          // Erreur réseau/permissions : on conserve la session persistée
+        }
       } else {
         setFirebaseUser(null);
-        setUser(null);
+        // Firebase peut émettre null au tout premier événement avant de
+        // restaurer la session : ne pas déconnecter dans ce cas si une
+        // session persistée existe.
+        if (!firstEvent || !persistedUser) setUser(null);
       }
+
+      firstEvent = false;
       setLoading(false);
     });
     return () => unsubscribe();
