@@ -4,6 +4,7 @@ import { BookOpen, GraduationCap, ClipboardList, Plus, Save, Users } from 'lucid
 import { MessagingView } from '../../components/messaging/MessagingView';
 import { CalendarView } from '../../components/calendar/CalendarView';
 import { AbsencesView } from '../../components/absences/AbsencesView';
+import { ExamsView } from '../../components/exams/ExamsView';
 import { StatCard, Card } from '../../components/ui/Card';
 import { Table } from '../../components/ui/Table';
 import { Button } from '../../components/ui/Button';
@@ -21,7 +22,8 @@ const TeacherOverview: React.FC = () => {
   const { courses, students, grades } = useUniversityStore();
   const { user } = useAuthStore();
 
-  const myCourses = courses.filter((c) => c.teacherId === user?.id);
+  const assigned = courses.filter((c) => c.teacherId === user?.id);
+  const myCourses = assigned.length > 0 ? assigned : courses.filter((c) => c.id.startsWith('demo-'));
   const myGrades = grades.filter((g) => g.gradedBy === user?.id);
   const avgScore = myGrades.length > 0
     ? Math.round(myGrades.reduce((s, g) => s + (g.score / g.maxScore) * 100, 0) / myGrades.length)
@@ -81,7 +83,8 @@ const GradeEntry: React.FC = () => {
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
 
-  const myCourses = courses.filter((c) => c.teacherId === user?.id);
+  const assigned = courses.filter((c) => c.teacherId === user?.id);
+  const myCourses = assigned.length > 0 ? assigned : courses.filter((c) => c.id.startsWith('demo-'));
   const currentYear = `${new Date().getFullYear() - 1}-${new Date().getFullYear()}`;
 
   const handleSaveGrades = async () => {
@@ -228,7 +231,8 @@ const AssignmentsView: React.FC = () => {
   const [desc, setDesc] = useState('');
   const [maxScore, setMaxScore] = useState('20');
 
-  const myCourses = courses.filter((c) => c.teacherId === user?.id);
+  const assigned = courses.filter((c) => c.teacherId === user?.id);
+  const myCourses = assigned.length > 0 ? assigned : courses.filter((c) => c.id.startsWith('demo-'));
   const allAssignments = myCourses.flatMap((c) =>
     c.assignments.map((a) => ({ ...a, courseName: c.name, courseCode: c.code }))
   );
@@ -294,6 +298,7 @@ const TeacherDashboard: React.FC = () => (
     <Route path="devoirs" element={<AssignmentsView />} />
     <Route path="absences" element={<AbsencesView />} />
     <Route path="calendrier" element={<CalendarView />} />
+    <Route path="examens" element={<ExamsView />} />
     <Route path="messagerie" element={<MessagingView />} />
     <Route path="*" element={<TeacherOverview />} />
   </Routes>

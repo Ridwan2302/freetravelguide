@@ -32,6 +32,7 @@ const NAV_ITEMS: Record<UserRole, NavItem[]> = {
     { to: '/dashboard/admin/absences',      icon: <AlertCircle className="w-4 h-4" />,      label: 'Absences' },
     { to: '/dashboard/admin/statistiques',  icon: <TrendingUp className="w-4 h-4" />,       label: 'Statistiques' },
     { to: '/dashboard/admin/calendrier',    icon: <Calendar className="w-4 h-4" />,         label: 'Calendrier' },
+    { to: '/dashboard/admin/examens',       icon: <FileText className="w-4 h-4" />,        label: 'Examens' },
     { to: '/dashboard/admin/messagerie',    icon: <MessageSquare className="w-4 h-4" />,    label: 'Messagerie' },
     { to: '/dashboard/admin/audit',         icon: <ClipboardList className="w-4 h-4" />,   label: 'Audit Logs' },
     { to: '/dashboard/admin/parametres',    icon: <Settings className="w-4 h-4" />,         label: 'Paramètres' },
@@ -43,6 +44,7 @@ const NAV_ITEMS: Record<UserRole, NavItem[]> = {
     { to: '/dashboard/enseignant/devoirs',      icon: <ClipboardList className="w-4 h-4" />,   label: 'Devoirs' },
     { to: '/dashboard/enseignant/absences',     icon: <AlertCircle className="w-4 h-4" />,      label: 'Absences' },
     { to: '/dashboard/enseignant/calendrier',   icon: <Calendar className="w-4 h-4" />,         label: 'Calendrier' },
+    { to: '/dashboard/enseignant/examens',      icon: <FileText className="w-4 h-4" />,        label: 'Examens' },
     { to: '/dashboard/enseignant/messagerie',   icon: <MessageSquare className="w-4 h-4" />,    label: 'Messagerie' },
   ],
   student: [
@@ -52,6 +54,7 @@ const NAV_ITEMS: Record<UserRole, NavItem[]> = {
     { to: '/dashboard/etudiant/cours',              icon: <BookOpen className="w-4 h-4" />,         label: 'Mes Cours' },
     { to: '/dashboard/etudiant/notes',              icon: <GraduationCap className="w-4 h-4" />,   label: 'Notes' },
     { to: '/dashboard/etudiant/bulletin',           icon: <FileText className="w-4 h-4" />,         label: 'Bulletin PDF' },
+    { to: '/dashboard/etudiant/examens',            icon: <ClipboardList className="w-4 h-4" />,   label: 'Examens' },
     { to: '/dashboard/etudiant/paiements',          icon: <CreditCard className="w-4 h-4" />,      label: 'Paiements' },
     { to: '/dashboard/etudiant/absences',           icon: <AlertCircle className="w-4 h-4" />,      label: 'Absences' },
     { to: '/dashboard/etudiant/messagerie',         icon: <MessageSquare className="w-4 h-4" />,    label: 'Messagerie' },
@@ -62,6 +65,7 @@ const NAV_ITEMS: Record<UserRole, NavItem[]> = {
     { to: '/dashboard/parent/absences',    icon: <AlertCircle className="w-4 h-4" />,      label: 'Absences' },
     { to: '/dashboard/parent/paiements',   icon: <CreditCard className="w-4 h-4" />,      label: 'Paiements' },
     { to: '/dashboard/parent/messagerie',  icon: <MessageSquare className="w-4 h-4" />,    label: 'Messagerie' },
+    { to: '/dashboard/parent/examens',     icon: <FileText className="w-4 h-4" />,         label: 'Examens' },
   ],
 };
 

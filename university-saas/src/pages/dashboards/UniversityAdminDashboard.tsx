@@ -29,6 +29,7 @@ import { MessagingView } from '../../components/messaging/MessagingView';
 import { AbsencesView } from '../../components/absences/AbsencesView';
 import { DepartmentStats } from '../../components/stats/DepartmentStats';
 import { CalendarView } from '../../components/calendar/CalendarView';
+import { ExamsView } from '../../components/exams/ExamsView';
 
 // =========== Overview ===========
 const Overview: React.FC = () => {
@@ -855,6 +856,7 @@ const UniversityAdminDashboard: React.FC = () => (
     <Route path="messagerie" element={<MessagingView />} />
     <Route path="statistiques" element={<DepartmentStats />} />
     <Route path="calendrier" element={<CalendarView />} />
+    <Route path="examens" element={<ExamsView />} />
     <Route path="*" element={<Overview />} />
   </Routes>
 );

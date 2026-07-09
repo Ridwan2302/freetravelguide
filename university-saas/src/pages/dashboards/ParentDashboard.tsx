@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import { GraduationCap, CreditCard, Bell, MessageSquare, TrendingUp, AlertCircle } from 'lucide-react';
 import { MessagingView } from '../../components/messaging/MessagingView';
 import { AbsencesView } from '../../components/absences/AbsencesView';
+import { ExamsView } from '../../components/exams/ExamsView';
 import { StatCard, Card } from '../../components/ui/Card';
 import { Table } from '../../components/ui/Table';
 import { Button } from '../../components/ui/Button';
@@ -177,6 +178,7 @@ const ParentDashboard: React.FC = () => (
     <Route path="absences" element={<AbsencesView />} />
     <Route path="paiements" element={<ParentOverview />} />
     <Route path="messagerie" element={<MessagingView />} />
+    <Route path="examens" element={<ExamsView />} />
     <Route path="*" element={<ParentOverview />} />
   </Routes>
 );

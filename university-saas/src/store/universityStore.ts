@@ -1,5 +1,6 @@
 import { create } from 'zustand';
 import type { University, Student, Teacher, Course, Grade, Enrollment, Payment } from '../types';
+import { DEMO_COURSES } from '../lib/demo/demoData';
 
 interface UniversityState {
   university: University | null;
@@ -28,14 +29,15 @@ export const useUniversityStore = create<UniversityState>((set) => ({
   university: null,
   students: [],
   teachers: [],
-  courses: [],
+  courses: DEMO_COURSES,
   grades: [],
   enrollments: [],
   payments: [],
   setUniversity: (university) => set({ university }),
   setStudents: (students) => set({ students }),
   setTeachers: (teachers) => set({ teachers }),
-  setCourses: (courses) => set({ courses }),
+  // Tant que l'université n'a créé aucun cours, on garde les matières de démonstration
+  setCourses: (courses) => set({ courses: courses.length > 0 ? courses : DEMO_COURSES }),
   setGrades: (grades) => set({ grades }),
   setEnrollments: (enrollments) => set({ enrollments }),
   setPayments: (payments) => set({ payments }),
@@ -45,7 +47,11 @@ export const useUniversityStore = create<UniversityState>((set) => ({
       students: state.students.map((s) => (s.id === id ? { ...s, ...data } : s)),
     })),
   addTeacher: (teacher) => set((state) => ({ teachers: [...state.teachers, teacher] })),
-  addCourse: (course) => set((state) => ({ courses: [...state.courses, course] })),
+  // Dès qu'un vrai cours est créé, les matières de démonstration disparaissent
+  addCourse: (course) =>
+    set((state) => ({
+      courses: [...state.courses.filter((c) => !c.id.startsWith('demo-')), course],
+    })),
   addGrade: (grade) => set((state) => ({ grades: [...state.grades, grade] })),
   reset: () =>
     set({

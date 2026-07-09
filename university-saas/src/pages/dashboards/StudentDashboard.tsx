@@ -16,6 +16,7 @@ import { MessagingView } from '../../components/messaging/MessagingView';
 import { CalendarView } from '../../components/calendar/CalendarView';
 import { AbsencesView } from '../../components/absences/AbsencesView';
 import { BulletinPDF } from '../../components/bulletin/BulletinPDF';
+import { ExamsView } from '../../components/exams/ExamsView';
 
 const StudentOverview: React.FC = () => {
   const { grades, courses, payments, students } = useUniversityStore();
@@ -24,7 +25,8 @@ const StudentOverview: React.FC = () => {
   const myStudent = students.find((s) => s.userId === user?.id);
   const myGrades = grades.filter((g) => g.studentId === myStudent?.id && g.status === 'published');
   const myPayments = payments.filter((p) => p.studentId === myStudent?.id);
-  const myEnrolledCourses = courses.filter((c) => myStudent && c.enrolledStudents.includes(myStudent.id));
+  const enrolledReal = courses.filter((c) => myStudent && c.enrolledStudents.includes(myStudent.id));
+  const myEnrolledCourses = enrolledReal.length > 0 ? enrolledReal : courses.filter((c) => c.id.startsWith('demo-'));
 
   const gpa = computeGPA(myGrades.map((g) => ({ gpaPoints: g.gpaPoints, weight: g.weight })));
   const pendingPayments = myPayments.filter((p) => p.status === 'pending');
@@ -290,7 +292,9 @@ const ScheduleView: React.FC = () => {
   const { courses, students } = useUniversityStore();
   const { user } = useAuthStore();
   const myStudent = students.find((s) => s.userId === user?.id);
-  const myCourses = courses.filter((c) => myStudent && c.enrolledStudents.includes(myStudent.id));
+  const enrolled = courses.filter((c) => myStudent && c.enrolledStudents.includes(myStudent.id));
+  // Sans inscription réelle, afficher l'emploi du temps de démonstration
+  const myCourses = enrolled.length > 0 ? enrolled : courses.filter((c) => c.id.startsWith('demo-'));
 
   const timeSlots = ['08:00', '09:00', '10:00', '11:00', '12:00', '14:00', '15:00', '16:00', '17:00'];
 
@@ -355,6 +359,7 @@ const StudentDashboard: React.FC = () => (
     <Route path="cours" element={<StudentOverview />} />
     <Route path="notes" element={<GradesView />} />
     <Route path="bulletin" element={<BulletinPDF />} />
+    <Route path="examens" element={<ExamsView />} />
     <Route path="paiements" element={<PaymentsView />} />
     <Route path="absences" element={<AbsencesView />} />
     <Route path="messagerie" element={<MessagingView />} />
