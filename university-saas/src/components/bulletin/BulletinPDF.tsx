@@ -208,7 +208,7 @@ export const BulletinPDF: React.FC<BulletinProps> = ({ studentId }) => {
           <div>
             <div className="flex items-center gap-2.5 mb-1">
               <GraduationCap className="w-5 h-5 text-white" />
-              <span className="font-black text-white text-lg">Awilo</span>
+              <span className="font-black text-white text-lg">Awi<span style={{color:"#93c5fd"}}>lo</span></span>
             </div>
             <p className="text-blue-200 text-sm">Bulletin de notes — Semestre {semester} — 2024/2025</p>
           </div>

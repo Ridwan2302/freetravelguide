@@ -13,7 +13,7 @@ export const Footer: React.FC = () => (
             <div className="w-9 h-9 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl flex items-center justify-center shadow">
               <GraduationCap className="w-5 h-5 text-white" />
             </div>
-            <span className="text-white font-black text-lg">Awilo</span>
+            <span className="text-white font-black text-lg">Awi<span className="text-blue-400">lo</span></span>
           </div>
           <p className="text-sm leading-relaxed text-slate-500">
             La plateforme de référence pour la gestion universitaire moderne en France.
