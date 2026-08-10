@@ -125,7 +125,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
           </nav>
 
           <div className="pt-3 border-t border-slate-100">
-            <p className="text-xs text-slate-300 text-center font-medium">University SaaS · v1.0</p>
+            <p className="text-xs text-slate-300 text-center font-medium">Awilo · v1.0</p>
           </div>
         </div>
       </aside>

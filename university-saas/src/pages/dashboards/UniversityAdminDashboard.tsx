@@ -126,11 +126,11 @@ const CredentialsModal: React.FC<{ credentials: NewCredentials | null; onClose: 
   if (!credentials) return null;
 
   const credentialsText =
-    `Bonjour ${credentials.name},%0D%0A%0D%0AVotre espace ${credentials.role} University SaaS est prêt.%0D%0A%0D%0AConnexion : ${window.location.origin}/connexion%0D%0AEmail : ${credentials.email}%0D%0AMot de passe provisoire : ${credentials.password}%0D%0A%0D%0AChoisissez l'espace « ${credentials.role} » sur la page de connexion, puis identifiez-vous.%0D%0A%0D%0ACordialement,%0D%0AL'administration`;
+    `Bonjour ${credentials.name},%0D%0A%0D%0AVotre espace ${credentials.role} Awilo est prêt.%0D%0A%0D%0AConnexion : ${window.location.origin}/connexion%0D%0AEmail : ${credentials.email}%0D%0AMot de passe provisoire : ${credentials.password}%0D%0A%0D%0AChoisissez l'espace « ${credentials.role} » sur la page de connexion, puis identifiez-vous.%0D%0A%0D%0ACordialement,%0D%0AL'administration`;
 
   const copyAll = () => {
     navigator.clipboard.writeText(
-      `Espace ${credentials.role} — University SaaS\nConnexion : ${window.location.origin}/connexion\nEmail : ${credentials.email}\nMot de passe : ${credentials.password}`
+      `Espace ${credentials.role} — Awilo\nConnexion : ${window.location.origin}/connexion\nEmail : ${credentials.email}\nMot de passe : ${credentials.password}`
     );
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
@@ -138,7 +138,7 @@ const CredentialsModal: React.FC<{ credentials: NewCredentials | null; onClose: 
 
   const sendByEmail = () => {
     window.open(
-      `mailto:${credentials.email}?subject=${encodeURIComponent(`Vos accès University SaaS — Espace ${credentials.role}`)}&body=${credentialsText}`,
+      `mailto:${credentials.email}?subject=${encodeURIComponent(`Vos accès Awilo — Espace ${credentials.role}`)}&body=${credentialsText}`,
       '_blank'
     );
   };

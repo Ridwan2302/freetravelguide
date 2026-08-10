@@ -100,7 +100,7 @@ export const PricingTable: React.FC = () => (
 
       <p className="mt-10 text-center text-slate-400 text-sm">
         Besoin d'un devis pour votre réseau d'établissements ?{' '}
-        <a href="mailto:contact@universitysaas.fr" className="text-blue-600 font-bold hover:underline">
+        <a href="mailto:contact@awilo.fr" className="text-blue-600 font-bold hover:underline">
           Contactez-nous
         </a>
       </p>

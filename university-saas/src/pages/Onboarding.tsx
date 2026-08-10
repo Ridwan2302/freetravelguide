@@ -150,7 +150,7 @@ const Onboarding: React.FC = () => {
             <div className="w-9 h-9 bg-blue-600 rounded-xl flex items-center justify-center">
               <GraduationCap className="w-5 h-5 text-white" />
             </div>
-            <span className="text-xl font-black text-gray-900">University SaaS</span>
+            <span className="text-xl font-black text-gray-900">Awilo</span>
           </Link>
           <h1 className="text-2xl font-bold text-gray-900">Créez votre espace universitaire</h1>
         </div>

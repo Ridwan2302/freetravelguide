@@ -108,7 +108,7 @@ export const ExamsView: React.FC = () => {
         .warn{background:#fffbeb;border:1px solid #fde68a;border-radius:8px;padding:12px;margin-top:16px;font-size:12px;color:#92400e}
         .foot{margin-top:40px;color:#94a3b8;font-size:10px;border-top:1px solid #e2e8f0;padding-top:12px}
       </style></head><body>
-      <div class="head"><div><div class="logo">University SaaS</div><div style="color:#64748b;font-size:11px">Service des examens</div></div>
+      <div class="head"><div><div class="logo">Awilo</div><div style="color:#64748b;font-size:11px">Service des examens</div></div>
       <div style="text-align:right"><h1>CONVOCATION</h1><div style="color:#64748b">${TYPE_LABELS[exam.type]}</div></div></div>
       <p>Candidat : <strong>${user?.profile.firstName ?? ''} ${user?.profile.lastName ?? ''}</strong></p>
       <div class="box">
@@ -120,7 +120,7 @@ export const ExamsView: React.FC = () => {
       </div>
       ${exam.instructions ? `<div class="warn"><strong>Consignes :</strong> ${exam.instructions}</div>` : ''}
       <div class="warn"><strong>Rappel :</strong> Présentez-vous 15 minutes avant le début de l'épreuve, muni de votre carte étudiante. Tout retard supérieur à 30 minutes entraîne l'exclusion de la salle.</div>
-      <div class="foot">Document généré par University SaaS — Convocation officielle aux examens</div>
+      <div class="foot">Document généré par Awilo — Convocation officielle aux examens</div>
       </body></html>`);
     w.document.close();
     setTimeout(() => w.print(), 400);

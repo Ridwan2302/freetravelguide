@@ -9,7 +9,7 @@ const articles = [
     title: "Comment digitaliser la gestion de votre université en moins de 48h",
     excerpt: "La transformation numérique des établissements d'enseignement supérieur n'est plus une option. Découvrez comment des dizaines d'universités ont modernisé leurs processus administratifs en un temps record.",
     category: "Transformation digitale",
-    author: "Équipe University SaaS",
+    author: "Équipe Awilo",
     date: "15 juin 2025",
     readTime: "5 min",
     image: null,
@@ -18,7 +18,7 @@ const articles = [
   {
     id: 2,
     title: "RGPD et données étudiantes : tout ce que votre établissement doit savoir",
-    excerpt: "La conformité réglementaire est au cœur de toute stratégie numérique responsable. Découvrez comment University SaaS garantit la protection des données de vos étudiants.",
+    excerpt: "La conformité réglementaire est au cœur de toute stratégie numérique responsable. Découvrez comment Awilo garantit la protection des données de vos étudiants.",
     category: "Conformité",
     author: "Équipe Juridique",
     date: "8 juin 2025",
@@ -40,7 +40,7 @@ const articles = [
   {
     id: 4,
     title: "Témoignage : comment l'Institut de Lyon a réduit ses tâches administratives de 60%",
-    excerpt: "Retour d'expérience de Dr. Karim Benali, Directeur des Affaires Académiques à l'Institut Supérieur de Lyon, sur le déploiement d'University SaaS auprès de 1 800 étudiants.",
+    excerpt: "Retour d'expérience de Dr. Karim Benali, Directeur des Affaires Académiques à l'Institut Supérieur de Lyon, sur le déploiement d'Awilo auprès de 1 800 étudiants.",
     category: "Témoignage client",
     author: "Rédaction",
     date: "24 mai 2025",
@@ -53,7 +53,7 @@ const articles = [
     title: "La communication parents-administration : un levier sous-estimé",
     excerpt: "Impliquer les parents dans le suivi scolaire améliore significativement les résultats académiques. Voici comment notre module parental transforme cette relation.",
     category: "Engagement",
-    author: "Équipe University SaaS",
+    author: "Équipe Awilo",
     date: "17 mai 2025",
     readTime: "5 min",
     image: null,
@@ -62,7 +62,7 @@ const articles = [
   {
     id: 6,
     title: "Paiements en ligne des scolarités : sécurité, conformité et expérience utilisateur",
-    excerpt: "Le module de paiement intégré d'University SaaS permet aux étudiants de régler leurs frais de scolarité en quelques clics, avec un niveau de sécurité bancaire.",
+    excerpt: "Le module de paiement intégré d'Awilo permet aux étudiants de régler leurs frais de scolarité en quelques clics, avec un niveau de sécurité bancaire.",
     category: "Finance",
     author: "Équipe Produit",
     date: "10 mai 2025",
@@ -87,7 +87,7 @@ const Blog: React.FC = () => {
             <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl flex items-center justify-center shadow shadow-blue-500/20">
               <GraduationCap className="w-4 h-4 text-white" />
             </div>
-            <span className="text-base font-black text-slate-900">University SaaS</span>
+            <span className="text-base font-black text-slate-900">Awilo</span>
           </Link>
           <Link to="/" className="flex items-center gap-1.5 text-sm font-semibold text-slate-500 hover:text-slate-900 transition-colors">
             <ArrowLeft className="w-4 h-4" /> Retour

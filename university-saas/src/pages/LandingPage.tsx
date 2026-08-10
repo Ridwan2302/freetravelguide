@@ -16,7 +16,7 @@ const LandingPage: React.FC = () => (
           <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl flex items-center justify-center shadow shadow-blue-500/20">
             <GraduationCap className="w-4 h-4 text-white" />
           </div>
-          <span className="text-base font-black text-slate-900">University SaaS</span>
+          <span className="text-base font-black text-slate-900">Awilo</span>
         </Link>
 
         <div className="hidden md:flex items-center gap-8">
@@ -69,7 +69,7 @@ const LandingPage: React.FC = () => (
                 Modernisez votre établissement dès aujourd'hui.
               </h2>
               <p className="text-lg text-blue-200 mb-10 max-w-xl mx-auto leading-relaxed">
-                Rejoignez plus de 50 universités et grandes écoles qui pilotent leur campus avec University SaaS.
+                Rejoignez plus de 50 universités et grandes écoles qui pilotent leur campus avec Awilo.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link

@@ -44,7 +44,7 @@ export const SocialProof: React.FC = () => (
           La confiance de nos clients
         </h2>
         <p className="mt-5 text-lg text-slate-400 max-w-xl mx-auto">
-          Des directeurs et doyens qui ont modernisé leur établissement avec University SaaS.
+          Des directeurs et doyens qui ont modernisé leur établissement avec Awilo.
         </p>
       </div>
 

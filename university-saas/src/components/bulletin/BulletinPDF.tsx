@@ -82,7 +82,7 @@ export const BulletinPDF: React.FC<BulletinProps> = ({ studentId }) => {
         <body>
           <div class="header">
             <div>
-              <div class="logo">University SaaS</div>
+              <div class="logo">Awilo</div>
               <div class="subtitle">Système de Gestion Universitaire</div>
             </div>
             <div style="text-align:right">
@@ -157,8 +157,8 @@ export const BulletinPDF: React.FC<BulletinProps> = ({ studentId }) => {
           </div>
 
           <div class="footer">
-            <span>Document généré automatiquement par University SaaS · Non modifiable</span>
-            <span>universitysaas.fr</span>
+            <span>Document généré automatiquement par Awilo · Non modifiable</span>
+            <span>awilo.fr</span>
           </div>
         </body>
         </html>
@@ -208,7 +208,7 @@ export const BulletinPDF: React.FC<BulletinProps> = ({ studentId }) => {
           <div>
             <div className="flex items-center gap-2.5 mb-1">
               <GraduationCap className="w-5 h-5 text-white" />
-              <span className="font-black text-white text-lg">University SaaS</span>
+              <span className="font-black text-white text-lg">Awilo</span>
             </div>
             <p className="text-blue-200 text-sm">Bulletin de notes — Semestre {semester} — 2024/2025</p>
           </div>

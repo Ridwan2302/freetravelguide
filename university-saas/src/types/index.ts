@@ -1,5 +1,5 @@
 // ============================================
-// TYPES TYPESCRIPT - University SaaS
+// TYPES TYPESCRIPT - Awilo
 // ============================================
 
 export type UserRole =

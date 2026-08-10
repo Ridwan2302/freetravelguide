@@ -11,7 +11,7 @@ const Contact: React.FC = () => {
     email: '',
     institution: '',
     subject: isDemo ? 'Demande de démonstration' : '',
-    message: isDemo ? "Bonjour, je souhaite planifier une démonstration personnalisée de University SaaS pour mon établissement." : '',
+    message: isDemo ? "Bonjour, je souhaite planifier une démonstration personnalisée de Awilo pour mon établissement." : '',
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [sent, setSent] = useState(false);
@@ -61,7 +61,7 @@ const Contact: React.FC = () => {
             <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl flex items-center justify-center shadow shadow-blue-500/20">
               <GraduationCap className="w-4 h-4 text-white" />
             </div>
-            <span className="text-base font-black text-slate-900">University SaaS</span>
+            <span className="text-base font-black text-slate-900">Awilo</span>
           </Link>
           <Link to="/" className="flex items-center gap-1.5 text-sm font-semibold text-slate-500 hover:text-slate-900 transition-colors">
             <ArrowLeft className="w-4 h-4" /> Retour
@@ -100,7 +100,7 @@ const Contact: React.FC = () => {
                 </div>
 
                 {[
-                  { icon: Mail, label: 'Email', value: 'contact@universitysaas.fr', color: 'bg-blue-50 text-blue-600' },
+                  { icon: Mail, label: 'Email', value: 'contact@awilo.fr', color: 'bg-blue-50 text-blue-600' },
                   { icon: Phone, label: 'Téléphone', value: '+33 1 42 00 00 00', color: 'bg-emerald-50 text-emerald-600' },
                   { icon: MapPin, label: 'Adresse', value: '12 rue de la Paix, 75001 Paris', color: 'bg-violet-50 text-violet-600' },
                 ].map(({ icon: Icon, label, value, color }) => (
