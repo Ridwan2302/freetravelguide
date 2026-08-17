@@ -40,7 +40,7 @@ export const Header: React.FC<HeaderProps> = ({ onMenuClick }) => {
           <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl flex items-center justify-center shadow shadow-blue-500/20">
             <GraduationCap className="w-4 h-4 text-white" />
           </div>
-          <span className="font-black text-slate-900 hidden sm:block text-sm">Awi<span className="text-blue-600">lo</span></span>
+          <span className="font-black text-slate-900 hidden sm:block text-sm">Awilo</span>
         </Link>
       </div>
 

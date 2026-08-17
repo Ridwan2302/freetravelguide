@@ -61,7 +61,7 @@ const Contact: React.FC = () => {
             <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl flex items-center justify-center shadow shadow-blue-500/20">
               <GraduationCap className="w-4 h-4 text-white" />
             </div>
-            <span className="text-base font-black text-slate-900">Awi<span className="text-blue-600">lo</span></span>
+            <span className="text-base font-black text-slate-900">Awilo</span>
           </Link>
           <Link to="/" className="flex items-center gap-1.5 text-sm font-semibold text-slate-500 hover:text-slate-900 transition-colors">
             <ArrowLeft className="w-4 h-4" /> Retour

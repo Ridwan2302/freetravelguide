@@ -34,7 +34,7 @@ export const HeroSection: React.FC = () => (
 
           <div className="fade-up-1">
             <h1 className="text-[3.5rem] lg:text-[4rem] font-black leading-[1.06] tracking-tight text-slate-900">
-              Awi<span className="text-blue-600">lo</span>
+              Awilo
             </h1>
             <p className="mt-5 text-xl text-slate-500 leading-relaxed">
               Gérez votre établissement, vos étudiants, enseignants et finances depuis un seul espace conçu pour l'excellence académique.
